@@ -1,0 +1,3 @@
+This is a program similar to a basic Markov Chain. 
+Each node is given a set of probabilities for each possible node jump. 
+It seems to work, but I have not had the need to implement / fully test it. 

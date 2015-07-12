@@ -1,0 +1,410 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D4C6EAF319BA30B200EE36A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C6EAF219BA30B200EE36A0 /* AppDelegate.swift */; };
+		D4C6EAF519BA30B200EE36A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C6EAF419BA30B200EE36A0 /* ViewController.swift */; };
+		D4C6EAF819BA30B200EE36A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4C6EAF619BA30B200EE36A0 /* Main.storyboard */; };
+		D4C6EAFA19BA30B200EE36A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4C6EAF919BA30B200EE36A0 /* Images.xcassets */; };
+		D4C6EB0619BA30B200EE36A0 /* PayrollProcessingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C6EB0519BA30B200EE36A0 /* PayrollProcessingTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D4C6EB0019BA30B200EE36A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4C6EAE519BA30B200EE36A0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4C6EAEC19BA30B200EE36A0;
+			remoteInfo = PayrollProcessing;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D4C6EAED19BA30B200EE36A0 /* PayrollProcessing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayrollProcessing.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4C6EAF119BA30B200EE36A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4C6EAF219BA30B200EE36A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D4C6EAF419BA30B200EE36A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D4C6EAF719BA30B200EE36A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D4C6EAF919BA30B200EE36A0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D4C6EAFF19BA30B200EE36A0 /* PayrollProcessingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PayrollProcessingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4C6EB0419BA30B200EE36A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4C6EB0519BA30B200EE36A0 /* PayrollProcessingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayrollProcessingTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D4C6EAEA19BA30B200EE36A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4C6EAFC19BA30B200EE36A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D4C6EAE419BA30B200EE36A0 = {
+			isa = PBXGroup;
+			children = (
+				D4C6EAEF19BA30B200EE36A0 /* PayrollProcessing */,
+				D4C6EB0219BA30B200EE36A0 /* PayrollProcessingTests */,
+				D4C6EAEE19BA30B200EE36A0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D4C6EAEE19BA30B200EE36A0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D4C6EAED19BA30B200EE36A0 /* PayrollProcessing.app */,
+				D4C6EAFF19BA30B200EE36A0 /* PayrollProcessingTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D4C6EAEF19BA30B200EE36A0 /* PayrollProcessing */ = {
+			isa = PBXGroup;
+			children = (
+				D4C6EAF219BA30B200EE36A0 /* AppDelegate.swift */,
+				D4C6EAF419BA30B200EE36A0 /* ViewController.swift */,
+				D4C6EAF619BA30B200EE36A0 /* Main.storyboard */,
+				D4C6EAF919BA30B200EE36A0 /* Images.xcassets */,
+				D4C6EAF019BA30B200EE36A0 /* Supporting Files */,
+			);
+			path = PayrollProcessing;
+			sourceTree = "<group>";
+		};
+		D4C6EAF019BA30B200EE36A0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D4C6EAF119BA30B200EE36A0 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D4C6EB0219BA30B200EE36A0 /* PayrollProcessingTests */ = {
+			isa = PBXGroup;
+			children = (
+				D4C6EB0519BA30B200EE36A0 /* PayrollProcessingTests.swift */,
+				D4C6EB0319BA30B200EE36A0 /* Supporting Files */,
+			);
+			path = PayrollProcessingTests;
+			sourceTree = "<group>";
+		};
+		D4C6EB0319BA30B200EE36A0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D4C6EB0419BA30B200EE36A0 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D4C6EAEC19BA30B200EE36A0 /* PayrollProcessing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4C6EB0919BA30B200EE36A0 /* Build configuration list for PBXNativeTarget "PayrollProcessing" */;
+			buildPhases = (
+				D4C6EAE919BA30B200EE36A0 /* Sources */,
+				D4C6EAEA19BA30B200EE36A0 /* Frameworks */,
+				D4C6EAEB19BA30B200EE36A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PayrollProcessing;
+			productName = PayrollProcessing;
+			productReference = D4C6EAED19BA30B200EE36A0 /* PayrollProcessing.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D4C6EAFE19BA30B200EE36A0 /* PayrollProcessingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4C6EB0C19BA30B200EE36A0 /* Build configuration list for PBXNativeTarget "PayrollProcessingTests" */;
+			buildPhases = (
+				D4C6EAFB19BA30B200EE36A0 /* Sources */,
+				D4C6EAFC19BA30B200EE36A0 /* Frameworks */,
+				D4C6EAFD19BA30B200EE36A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4C6EB0119BA30B200EE36A0 /* PBXTargetDependency */,
+			);
+			name = PayrollProcessingTests;
+			productName = PayrollProcessingTests;
+			productReference = D4C6EAFF19BA30B200EE36A0 /* PayrollProcessingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D4C6EAE519BA30B200EE36A0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Josh Allen Bosley";
+				TargetAttributes = {
+					D4C6EAEC19BA30B200EE36A0 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					D4C6EAFE19BA30B200EE36A0 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = D4C6EAEC19BA30B200EE36A0;
+					};
+				};
+			};
+			buildConfigurationList = D4C6EAE819BA30B200EE36A0 /* Build configuration list for PBXProject "PayrollProcessing" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D4C6EAE419BA30B200EE36A0;
+			productRefGroup = D4C6EAEE19BA30B200EE36A0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D4C6EAEC19BA30B200EE36A0 /* PayrollProcessing */,
+				D4C6EAFE19BA30B200EE36A0 /* PayrollProcessingTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D4C6EAEB19BA30B200EE36A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4C6EAF819BA30B200EE36A0 /* Main.storyboard in Resources */,
+				D4C6EAFA19BA30B200EE36A0 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4C6EAFD19BA30B200EE36A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D4C6EAE919BA30B200EE36A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4C6EAF519BA30B200EE36A0 /* ViewController.swift in Sources */,
+				D4C6EAF319BA30B200EE36A0 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4C6EAFB19BA30B200EE36A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4C6EB0619BA30B200EE36A0 /* PayrollProcessingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D4C6EB0119BA30B200EE36A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4C6EAEC19BA30B200EE36A0 /* PayrollProcessing */;
+			targetProxy = D4C6EB0019BA30B200EE36A0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D4C6EAF619BA30B200EE36A0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4C6EAF719BA30B200EE36A0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D4C6EB0719BA30B200EE36A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D4C6EB0819BA30B200EE36A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D4C6EB0A19BA30B200EE36A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = PayrollProcessing/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D4C6EB0B19BA30B200EE36A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = PayrollProcessing/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D4C6EB0D19BA30B200EE36A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PayrollProcessingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PayrollProcessing.app/PayrollProcessing";
+			};
+			name = Debug;
+		};
+		D4C6EB0E19BA30B200EE36A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PayrollProcessingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PayrollProcessing.app/PayrollProcessing";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D4C6EAE819BA30B200EE36A0 /* Build configuration list for PBXProject "PayrollProcessing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4C6EB0719BA30B200EE36A0 /* Debug */,
+				D4C6EB0819BA30B200EE36A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4C6EB0919BA30B200EE36A0 /* Build configuration list for PBXNativeTarget "PayrollProcessing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4C6EB0A19BA30B200EE36A0 /* Debug */,
+				D4C6EB0B19BA30B200EE36A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D4C6EB0C19BA30B200EE36A0 /* Build configuration list for PBXNativeTarget "PayrollProcessingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4C6EB0D19BA30B200EE36A0 /* Debug */,
+				D4C6EB0E19BA30B200EE36A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D4C6EAE519BA30B200EE36A0 /* Project object */;
+}

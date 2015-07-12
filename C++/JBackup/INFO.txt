@@ -1,0 +1,44 @@
+Files:
+
+JConfig points to location of job files. 
+Job files store job data 
+
+##########################################
+
+File Formatting ( JConfig.txt ) : 
+<EOLN>	 = End of line
+<EOF>	 = End of file
+
+source/job_file-0.jbk<EOLN>
+source/job_file-1.jbk<EOLN>
+source/job_file-2.jbk<EOLN>
+...
+source/job_file-n.jbk<EOLN>
+<EOF>
+
+##########################################
+
+File Formatting ( Job Files < .jbk >) : 
+<EOLN>	 = End of line
+<EOF>	 = End of file
+
+Test Backup<EOLN>
+C:\\TESTING\\SOURCE<EOLN>
+C:\\TESTING\\DESTINATION<EOLN>
+-1 3 30 -1 -1 -1 1<EOLN>
+<EOF>
+
+##########################################
+
+Date Information : 
+
+yr mo da ho mi se update_index
+
+All ascii encoded integers.
+All -1 encodes as true.
+Ranges not allowed.
+Update_index is the number used to control following updates.
+In the example update_index is 1, and a month is provided,
+so after the update happend, month+=update_index.
+
+##########################################

@@ -1,0 +1,8 @@
+# Window Display Settings 
+@doSetup = 1
+@doShowMainDisplay = 1
+@doShowBackupWindow = 1
+# Error Report Settings 
+@doErrorPopup = 1
+@doErrorConsole = 1
+@doErrorFile = -1

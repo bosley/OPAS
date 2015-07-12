@@ -1,0 +1,49 @@
+# Project: jbup
+# Compiler: Default GCC compiler
+# Compiler Type: MingW 3
+# Makefile created by wxDev-C++ IDE 7.4.2.569 on 30/03/14 18:05
+
+WXLIBNAME = wxmsw29u
+CPP       = g++.exe
+CC        = gcc.exe
+WINDRES   = "windres.exe"
+OBJ       = Default\ Profile/init.o Default\ Profile/copy.o Default\ Profile/directoryReader.o Default\ Profile/err.o
+LINKOBJ   = "Default Profile/init.o" "Default Profile/copy.o" "Default Profile/directoryReader.o" "Default Profile/err.o"
+LIBS      = -L"F:/Program Files (x86)/Dev-Cpp/lib/wx/gcc_lib" -L"F:/Program Files (x86)/Dev-Cpp/lib" -L"F:/Program Files (x86)/Dev-Cpp/MinGW32/lib"  -g3 
+INCS      = -I"F:/Program Files (x86)/Dev-Cpp/MinGW32/include"
+CXXINCS   = -I"F:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"F:/Program Files (x86)/Dev-Cpp/" -I"F:/Program Files (x86)/Dev-Cpp/include/common"
+RCINCS    = --include-dir "F:/PROGRA~2/Dev-Cpp/include/common"
+BIN       = Default Profile/jbup.exe
+DEFINES   = 
+CXXFLAGS  = $(CXXINCS) $(DEFINES)   -g3
+CFLAGS    = $(INCS) $(DEFINES)   -g3
+GPROF     = gprof.exe
+ifeq ($(OS),Windows_NT)
+   RM = del /Q
+   FixPath = $(subst /,\,$1)
+else
+   RM = rm -f
+   FixPath = $1
+endif
+LINK      = g++.exe
+
+.PHONY: all all-before all-after clean clean-custom
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	$(RM) $(call FixPath,$(LINKOBJ)) "$(call FixPath,$(BIN))"
+
+$(BIN): $(OBJ)
+	$(LINK) $(LINKOBJ) -o "$(BIN)" $(LIBS) 
+
+Default\ Profile/init.o: $(GLOBALDEPS) init.cpp init.h err.h copy.h directoryReader.h
+	$(CPP) -c init.cpp -o "Default Profile/init.o" $(CXXFLAGS)
+
+Default\ Profile/copy.o: $(GLOBALDEPS) copy.cpp copy.h directoryReader.h
+	$(CPP) -c copy.cpp -o "Default Profile/copy.o" $(CXXFLAGS)
+
+Default\ Profile/directoryReader.o: $(GLOBALDEPS) directoryReader.cpp directoryReader.h
+	$(CPP) -c directoryReader.cpp -o "Default Profile/directoryReader.o" $(CXXFLAGS)
+
+Default\ Profile/err.o: $(GLOBALDEPS) err.cpp err.h
+	$(CPP) -c err.cpp -o "Default Profile/err.o" $(CXXFLAGS)

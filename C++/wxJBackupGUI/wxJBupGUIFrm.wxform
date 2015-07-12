@@ -1,0 +1,1003 @@
+object frmNewForm: TfrmNewForm
+  Left = 8
+  Top = 8
+  AutoScroll = False
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'wxJBupGUI'
+  ClientHeight = 365
+  ClientWidth = 436
+  Color = clAppWorkSpace
+  Font.Charset = ANSI_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -16
+  Font.Name = 'Times New Roman'
+  Font.Style = []
+  OldCreateOrder = True
+  PopupMenu = DesignerPopup.Owner
+  Visible = True
+  OnClick = FormClick
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnResize = FormResize
+  EVT_CLOSE = 'OnClose'
+  Wx_ICON.Data = {07544269746D617000000000}
+  Wx_Name = 'Jbup'
+  Wx_IDName = 'ID_DIALOG1'
+  Wx_IDValue = 1000
+  Wx_Class = 'wxFrame'
+  Wx_Center = True
+  Wx_Hidden = False
+  Wx_SizeToContents = False
+  Wx_GeneralStyle = [wxSIMPLE_BORDER, wxTRANSPARENT_WINDOW]
+  Wx_DialogStyle = [wxCAPTION, wxSYSTEM_MENU, wxDIALOG_NO_PARENT, wxMINIMIZE_BOX, wxCLOSE_BOX]
+  Wx_DesignerType = dtWxFrame
+  Wx_Border = 0
+  Wx_BorderAlignment = []
+  isAuimanagerAvailable = False
+  PixelsPerInch = 96
+  TextHeight = 19
+  object BackupSelect: TWxComboBox
+    Left = 9
+    Top = 269
+    Width = 302
+    Height = 27
+    ItemHeight = 19
+    TabOrder = 0
+    Text = 'Select Backup'
+    Wx_BGColor = clBlack
+    Wx_Class = 'wxComboBox'
+    Wx_ComboboxStyle = []
+    Wx_EditStyle = []
+    Wx_ControlOrientation = wxControlVertical
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_BACKUPSELECT'
+    Wx_IDValue = 1001
+    Wx_PaneCaption = 'WxComboBox1'
+    Wx_PaneName = 'WxComboBox1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object Load: TWxButton
+    Left = 8
+    Top = 304
+    Width = 75
+    Height = 25
+    Caption = 'Load'
+    TabOrder = 1
+    EVT_BUTTON = 'EditClick'
+    Wx_BKColor = clBlack
+    Wx_ButtonStyle = []
+    Wx_Class = 'wxButton'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_Default = False
+    Wx_EventList.Strings = (
+      'EVT_BUTTON:OnClick'
+      'EVT_UPDATE_UI:OnUpdateUI')
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_LOAD'
+    Wx_IDValue = 1002
+    Wx_PaneCaption = 'WxButton1'
+    Wx_PaneName = 'WxButton1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object TitleBox: TWxEdit
+    Left = 8
+    Top = 32
+    Width = 304
+    Height = 22
+    BevelInner = bvNone
+    BevelOuter = bvNone
+    AutoSize = False
+    TabOrder = 2
+    Text = '...'
+    EVT_TEXT = 'TitleBoxUpdated0'
+    Wx_BGColor = clBlack
+    Wx_Class = 'wxTextCtrl'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_EditStyle = []
+    Wx_Enabled = False
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_TITLEBOX'
+    Wx_IDValue = 1004
+    Wx_MaxLength = 0
+    Wx_PaneCaption = 'WxEdit1'
+    Wx_PaneName = 'WxEdit1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object TitleLabel: TWxStaticText
+    Left = 9
+    Top = 9
+    Width = 41
+    Height = 23
+    Caption = 'Title : '
+    TabOrder = 3
+    Wx_BGColor = clBlack
+    Wx_Class = 'wxStaticText'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_TITLELABEL'
+    Wx_IDValue = 1005
+    Wx_LabelStyle = []
+    Wx_PaneCaption = 'WxStaticText1'
+    Wx_PaneName = 'WxStaticText1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object Source: TWxStaticText
+    Left = 8
+    Top = 60
+    Width = 58
+    Height = 23
+    Caption = 'Source : '
+    TabOrder = 4
+    Wx_BGColor = clBlack
+    Wx_Class = 'wxStaticText'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_SOURCE'
+    Wx_IDValue = 1011
+    Wx_LabelStyle = []
+    Wx_PaneCaption = 'WxStaticText1'
+    Wx_PaneName = 'WxStaticText1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object Destination: TWxStaticText
+    Left = 8
+    Top = 120
+    Width = 82
+    Height = 23
+    Caption = 'Destination : '
+    TabOrder = 5
+    Wx_BGColor = clBlack
+    Wx_Class = 'wxStaticText'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_DESTINATION'
+    Wx_IDValue = 1012
+    Wx_LabelStyle = []
+    Wx_PaneCaption = 'WxStaticText1'
+    Wx_PaneName = 'WxStaticText1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object SourcePathBox: TWxEdit
+    Left = 8
+    Top = 88
+    Width = 304
+    Height = 22
+    BevelInner = bvNone
+    BevelOuter = bvNone
+    AutoSize = False
+    TabOrder = 6
+    Text = '...'
+    Wx_BGColor = clBlack
+    Wx_Class = 'wxTextCtrl'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_EditStyle = []
+    Wx_Enabled = False
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_SOURCEPATHBOX'
+    Wx_IDValue = 1017
+    Wx_MaxLength = 0
+    Wx_PaneCaption = 'WxEdit1'
+    Wx_PaneName = 'WxEdit1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object DestinationPathBox: TWxEdit
+    Left = 8
+    Top = 144
+    Width = 304
+    Height = 22
+    BevelInner = bvNone
+    BevelOuter = bvNone
+    AutoSize = False
+    TabOrder = 7
+    Text = '...'
+    Wx_BGColor = clBlack
+    Wx_Class = 'wxTextCtrl'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_EditStyle = []
+    Wx_Enabled = False
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_DESTINATIONPATHBOX'
+    Wx_IDValue = 1018
+    Wx_MaxLength = 0
+    Wx_PaneCaption = 'WxEdit1'
+    Wx_PaneName = 'WxEdit1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object EditSource: TWxButton
+    Left = 318
+    Top = 85
+    Width = 75
+    Height = 25
+    Caption = 'Edit'
+    TabOrder = 8
+    EVT_BUTTON = 'EditSourceClick'
+    Wx_BKColor = clBlack
+    Wx_ButtonStyle = []
+    Wx_Class = 'wxButton'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_Default = False
+    Wx_Enabled = False
+    Wx_EventList.Strings = (
+      'EVT_BUTTON:OnClick'
+      'EVT_UPDATE_UI:OnUpdateUI')
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_EDITSOURCE'
+    Wx_IDValue = 1019
+    Wx_PaneCaption = 'WxButton1'
+    Wx_PaneName = 'WxButton1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object EditDestination: TWxButton
+    Left = 319
+    Top = 144
+    Width = 76
+    Height = 25
+    Caption = 'Edit'
+    TabOrder = 10
+    EVT_BUTTON = 'EditDestinationClick'
+    Wx_BKColor = clBlack
+    Wx_ButtonStyle = []
+    Wx_Class = 'wxButton'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_Default = False
+    Wx_Enabled = False
+    Wx_EventList.Strings = (
+      'EVT_BUTTON:OnClick'
+      'EVT_UPDATE_UI:OnUpdateUI')
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_EDITDESTINATION'
+    Wx_IDValue = 1021
+    Wx_PaneCaption = 'WxButton1'
+    Wx_PaneName = 'WxButton1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object SaveButton: TWxButton
+    Left = 88
+    Top = 304
+    Width = 67
+    Height = 25
+    Caption = 'Save'
+    TabOrder = 12
+    EVT_BUTTON = 'SaveButtonClick'
+    Wx_BKColor = clBlack
+    Wx_ButtonStyle = []
+    Wx_Class = 'wxButton'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_Default = False
+    Wx_Enabled = False
+    Wx_EventList.Strings = (
+      'EVT_BUTTON:OnClick'
+      'EVT_UPDATE_UI:OnUpdateUI')
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_SAVEBUTTON'
+    Wx_IDValue = 1024
+    Wx_PaneCaption = 'WxButton1'
+    Wx_PaneName = 'WxButton1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object ErrorText: TWxStaticText
+    Left = 504
+    Top = 32
+    Width = 63
+    Height = 23
+    Caption = 'ErrorText'
+    TabOrder = 15
+    Wx_BGColor = clBlack
+    Wx_Class = 'wxStaticText'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = True
+    Wx_IDName = 'ID_ERRORTEXT'
+    Wx_IDValue = 1026
+    Wx_LabelStyle = []
+    Wx_PaneCaption = 'WxStaticText1'
+    Wx_PaneName = 'WxStaticText1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object EditTitle: TWxButton
+    Left = 320
+    Top = 32
+    Width = 75
+    Height = 25
+    Caption = 'Edit'
+    TabOrder = 16
+    EVT_BUTTON = 'EditTitleClick'
+    Wx_BKColor = clBlack
+    Wx_ButtonStyle = []
+    Wx_Class = 'wxButton'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_Default = False
+    Wx_Enabled = False
+    Wx_EventList.Strings = (
+      'EVT_BUTTON:OnClick'
+      'EVT_UPDATE_UI:OnUpdateUI')
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_EDITTITLE'
+    Wx_IDValue = 1027
+    Wx_PaneCaption = 'WxButton1'
+    Wx_PaneName = 'WxButton1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object CheckBoxMonths: TWxCheckBox
+    Left = 96
+    Top = 176
+    Width = 97
+    Height = 17
+    Caption = 'Monthly'
+    TabOrder = 17
+    EVT_CHECKBOX = 'CheckBoxMonthsClick'
+    Wx_BGColor = clBlack
+    Wx_CheckBoxStyle = []
+    Wx_Class = 'wxCheckBox'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_Enabled = False
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_CHECKBOXMONTHS'
+    Wx_IDValue = 1028
+    Wx_PaneCaption = 'WxCheckBox1'
+    Wx_PaneName = 'WxCheckBox1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object CheckBoxDays: TWxCheckBox
+    Left = 224
+    Top = 176
+    Width = 97
+    Height = 17
+    Caption = 'Day(s)'
+    TabOrder = 18
+    EVT_CHECKBOX = 'CheckBoxDaysClick'
+    Wx_BGColor = clBlack
+    Wx_CheckBoxStyle = []
+    Wx_Class = 'wxCheckBox'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_Enabled = False
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_CHECKBOXDAYS'
+    Wx_IDValue = 1029
+    Wx_PaneCaption = 'WxCheckBox1'
+    Wx_PaneName = 'WxCheckBox1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object TimeDisplayText: TWxStaticText
+    Left = 8
+    Top = 176
+    Width = 59
+    Height = 23
+    Caption = 'Shedule :'
+    TabOrder = 19
+    Wx_BGColor = clBlack
+    Wx_Class = 'wxStaticText'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = False
+    Wx_IDName = 'ID_TIMEDISPLAYTEXT'
+    Wx_IDValue = 1032
+    Wx_LabelStyle = []
+    Wx_PaneCaption = 'WxStaticText1'
+    Wx_PaneName = 'WxStaticText1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object MonthsDropdown: TWxComboBox
+    Left = 96
+    Top = 200
+    Width = 49
+    Height = 27
+    ItemHeight = 19
+    TabOrder = 20
+    Text = '...'
+    Wx_BGColor = clBlack
+    Wx_Class = 'wxComboBox'
+    Wx_ComboboxStyle = [wxCB_DROPDOWN]
+    Wx_EditStyle = []
+    Wx_ControlOrientation = wxControlVertical
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = True
+    Wx_IDName = 'ID_MONTHSDROPDOWN'
+    Wx_IDValue = 1034
+    Wx_PaneCaption = 'WxComboBox1'
+    Wx_PaneName = 'WxComboBox1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object MonthDaysDropdown: TWxComboBox
+    Left = 96
+    Top = 232
+    Width = 49
+    Height = 27
+    ItemHeight = 19
+    TabOrder = 21
+    Text = '...'
+    Wx_BGColor = clBlack
+    Wx_Class = 'wxComboBox'
+    Wx_ComboboxStyle = [wxCB_DROPDOWN]
+    Wx_EditStyle = []
+    Wx_ControlOrientation = wxControlVertical
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = True
+    Wx_IDName = 'ID_MONTHDAYSDROPDOWN'
+    Wx_IDValue = 1035
+    Wx_PaneCaption = 'WxComboBox1'
+    Wx_PaneName = 'WxComboBox1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object MonthTextLabel: TWxStaticText
+    Left = 8
+    Top = 208
+    Width = 84
+    Height = 23
+    Caption = 'Start Month :'
+    TabOrder = 22
+    Wx_BGColor = clBlack
+    Wx_Class = 'wxStaticText'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = True
+    Wx_IDName = 'ID_MONTHTEXTLABEL'
+    Wx_IDValue = 1036
+    Wx_LabelStyle = []
+    Wx_PaneCaption = 'WxStaticText1'
+    Wx_PaneName = 'WxStaticText1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object DayText: TWxStaticText
+    Left = 24
+    Top = 240
+    Width = 69
+    Height = 23
+    Caption = 'Start Day :'
+    TabOrder = 23
+    Wx_BGColor = clBlack
+    Wx_Class = 'wxStaticText'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = True
+    Wx_IDName = 'ID_DAYTEXT'
+    Wx_IDValue = 1037
+    Wx_LabelStyle = []
+    Wx_PaneCaption = 'WxStaticText1'
+    Wx_PaneName = 'WxStaticText1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object IntervalDropdown: TWxComboBox
+    Left = 224
+    Top = 200
+    Width = 49
+    Height = 27
+    ItemHeight = 19
+    TabOrder = 24
+    Text = '...'
+    Wx_BGColor = clBlack
+    Wx_Class = 'wxComboBox'
+    Wx_ComboboxStyle = []
+    Wx_EditStyle = []
+    Wx_ControlOrientation = wxControlVertical
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = True
+    Wx_IDName = 'ID_INTERVALDROPDOWN'
+    Wx_IDValue = 1038
+    Wx_PaneCaption = 'WxComboBox1'
+    Wx_PaneName = 'WxComboBox1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object IntervalLabel: TWxStaticText
+    Left = 168
+    Top = 208
+    Width = 56
+    Height = 23
+    Caption = 'Interval :'
+    TabOrder = 25
+    Wx_BGColor = clBlack
+    Wx_Class = 'wxStaticText'
+    Wx_ControlOrientation = wxControlVertical
+    Wx_FGColor = clBlack
+    Wx_GeneralStyle = []
+    Wx_Hidden = True
+    Wx_IDName = 'ID_INTERVALLABEL'
+    Wx_IDValue = 1039
+    Wx_LabelStyle = []
+    Wx_PaneCaption = 'WxStaticText1'
+    Wx_PaneName = 'WxStaticText1_Pane'
+    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
+    Wx_Aui_Dockable_Direction = []
+    Wx_Aui_Pane_Style = []
+    Wx_Aui_Pane_Buttons = []
+    Wx_BestSize_Height = 0
+    Wx_BestSize_Width = 0
+    Wx_MinSize_Height = 0
+    Wx_MinSize_Width = 0
+    Wx_MaxSize_Height = 0
+    Wx_MaxSize_Width = 0
+    Wx_Floating_Height = 0
+    Wx_Floating_Width = 0
+    Wx_Floating_X_Pos = 0
+    Wx_Floating_Y_Pos = 0
+  end
+  object WxSaveFileDialog1: TWxSaveFileDialog
+    Left = 112
+    Top = 0
+    Width = 28
+    Height = 27
+    TabOrder = 13
+    Glyph.Data = {
+      36040000424D3604000000000000360000002800000010000000100000000100
+      2000000000000004000000000000000000000000000000000000FF00FF00FF00
+      FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+      FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00B7A293006349
+      3500634935006349350063493500634935006349350063493500634935006349
+      3500634935006349350063493500634935006349350063493500B7A29300FEFD
+      FC00E1DCD800E0D7D200DFD2CA00DFCEC300DDC8BB00DCC3B300DBBFAD00DBBB
+      A700DBBBA700DBBBA700DBBBA700DBBBA700CFB4A30063493500B7A29300FEFE
+      FE0063493500634935006349350063493500634935006349350063493500FAED
+      E700F9EAE400F8E8E000F8E5DD00F6E2D800CFB4A30063493500B7A29300FFFF
+      FF00B3998A00F9F7F600F0EAE700E6DBD600DCCFC700D2C1B80063493500FAF0
+      EA00F9EDE700F9EBE300F8E7E000F7E6DC00CFB4A30063493500B7A29300FFFF
+      FF00B89F9100FFFFFF0000FF0000EFE8E500E4DAD400DACCC50063493500FBF3
+      EF00FBF0EB00F9EDE700F9EAE400F8E8E100CFB4A30063493500BAA59600FFFF
+      FF00BFA69900B9A09200B49A8B00AF968600AA918100A58B7A0063493500FCF5
+      F200FCF2EE00FBF0EB00FAEDE800F9EBE400D0B9AB0063493500BEA99A00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF0000000000FFFEFD00FEFBFB00FEFAF800FDF8
+      F600FCF5F200FCF3EF00FBF0EC00F9EEE800D1C1B60063493500C3AE9E00FFFF
+      FF00FFFFFF00FFFFFF00000000000000000000000000FEFDFD00FEFCFB00FEFA
+      F800FDF8F600FCF5F200FCF3EF00FAF0EC00D1C1B60063493500C8B2A300FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000FFFEFE000000
+      0000000000000000000000000000FCF3EF00D1C1B60063493500BEA99A00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF0000000000FFFFFF00FFFFFF00FFFFFF00FEFE
+      FD00FEFCFC00FEFAF900FDF8F600FCF6F300D1C1B60063493500C3AE9E00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF0000000000FFFFFF00FFFFFF00FFFFFF000000
+      0000000000000000000000000000FDF9F600D1C1B60063493500C8B2A300FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFEFE00FEFDFC00FEFBF900FDF9F70063493500EAAA8B00EAAA
+      8B00EAAA8B00EAAA8B00E9A58400E99F7A00E7976E00E68E6200E5865600E37D
+      4A00E3764000E2723900E2723900E2723900E2723900C8622F00EAAA8B00FFC2
+      A200FFC2A200FEC09F00FDBD9A00FCB99600FBB59000FAB08B00F9AB8400F8A7
+      7D00F6A27700F59D7100F5996A00F3956500F3956500CD653100EAAA8B00EAAA
+      8B00EAAA8B00EAAA8B00EAAA8B00EAA68600E9A17F00E89B7600E7946C00E68E
+      6200E5875800E4814E00E47B4600E3763E00E3763E00E2723900}
+    Wx_Class = 'wxFileDialog'
+    Wx_Message = 'Choose a file'
+    Wx_Extensions = '*.*'
+    Wx_DialogStyle = []
+  end
+  object SourceSelection: TWxDirDialog
+    Left = 48
+    Top = 0
+    Width = 28
+    Height = 27
+    TabOrder = 9
+    Glyph.Data = {
+      36040000424D3604000000000000360000002800000010000000100000000100
+      2000000000000004000000000000000000000000000000000000FF00FF00FF00
+      FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+      FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00B5A59400634A
+      3100634A3100634A3100634A3100634A3100634A3100634A3100634A3100634A
+      3100634A3100634A3100634A3100634A3100634A3100634A3100B5A59400FFFF
+      FF00DEDED600DED6D600DED6CE00DECEC500DEC5BD00DEC5B500DEBDAD00DEBD
+      A500DEBDA500DEBDA500DEBDA500DEBDA500CEB5A500634A3100B5A59400FFFF
+      FF0073848C006B7B8400424A5200313A42002129310010101900101019001010
+      190010101900F7E6DE00F7E6DE00F7DED600CEB5A500634A3100B5A59400FFFF
+      FF007384940094E6FF0063CEF7004AC5EF0042B5E60031ADDE00299CD6001984
+      B50019192100F7E6DE00F7E6DE00F7E6DE00CEB5A500634A3100B5A59400FFFF
+      FF00849CA500ADEFFF0094E6FF007BDEFF006BCEF70052BDF7003AB5EF00198C
+      C5005A636B00F7E6E600F7E6E600F7E6DE00CEB5A500634A3100BDA59400FFFF
+      FF00849CA500B5F7FF009CE6FF008CDEFF0073D6F70063CEF7004ABDEF001994
+      CE0063737B00F7EFE600F7EFE600F7EFE600CEB5AD00634A3100BDAD9C00FFFF
+      FF008C9CA500BDF7FF00ADEFF7009CE6FF0084DEFF0073D6F70063C5F700199C
+      D60063737B00FFEFEF00FFEFEF00F7EFE600CEBDB500634A3100C5AD9C00FFFF
+      FF008CA5AD00BDF7FF00BDEFF700ADEFF7008C9CA500849CA50084949C008494
+      9C00CECECE00FFF7EF00FFF7EF00F7EFEF00CEBDB500634A3100C5B5A500FFFF
+      FF00E6EFF7008CA5AD008CA5AD0094B5C500DEE6EF00FFFFFF00FFFFFF00634A
+      3100634A3100634A3100634A3100FFF7EF00CEBDB500634A3100BDAD9C00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFF7F700FFF7F700FFF7F700CEBDB500634A3100C5AD9C00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00634A
+      3100634A3100634A3100634A3100FFF7F700CEBDB500634A3100C5B5A500FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFF700FFF7F700634A3100E6AD8C00E6AD
+      8C00E6AD8C00E6AD8C00E6A58400E69C7B00E6946B00E68C6300E6845200E67B
+      4A00E6734200DE733A00DE733A00DE733A00DE733A00C5633100E6AD8C00FFC5
+      A500FFC5A500FFBD9C00FFBD9C00FFB59400FFB59400F7AD8C00F7AD8400F7A5
+      7B00F7A57300F79C7300F79C6B00F7946300F7946300CE633100E6AD8C00E6AD
+      8C00E6AD8C00E6AD8C00E6AD8C00E6A58400E6A57B00E69C7300E6946B00E68C
+      6300E6845A00E6844A00E67B4A00E6734200E6734200DE733A00}
+    Wx_Class = 'wxDirDialog'
+    Wx_Message = 'Choose a directory'
+    Wx_DirDialogStyle = []
+  end
+  object WxMessageDialog1: TWxMessageDialog
+    Left = 144
+    Top = 0
+    Width = 28
+    Height = 27
+    TabOrder = 14
+    Glyph.Data = {
+      36040000424D3604000000000000360000002800000010000000100000000100
+      2000000000000004000000000000000000000000000000000000FF00FF00FF00
+      FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+      FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00B7A293006349
+      3500634935006349350063493500634935006349350063493500634935006349
+      3500634935006349350063493500634935006349350063493500B7A29300FFFF
+      FF00E1DCD800E0D9D400DED6D000DDD3CC00DBD0C800DACDC400D9C9BF00D7C6
+      BB00D6C3B700D4C0B300D3BDAF00D1B9AA00CFB5A40063493500B7A29300FFFF
+      FF00FFFFFF00BEBEBD0035312F00090A0A00A1A0A000FBF8F700F5F0EC00A9A3
+      9F000C0B0B00000000002E2B2A00DDCABE00CFB6A70063493500B7A29300FFFF
+      FF00FFFFFF00FFFFFF009A9A98005F585500FFFFFF00FEFDFC00F9F5F300E0D8
+      D200322D2A000E0A0800C0BCB900E0CFC400D0B8A90063493500B7A29300FFFF
+      FF00FFFFFF00FFFFFF00F8F6F5006F696600595454008D888500878280005150
+      4F00000000007A767400E9DCD500E4D5CB00D0BAAB0063493500BAA59600FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF008B89880067636000B9B5B4009D9A99000A08
+      080025211F00CBC5C100EDE3DC00E7DAD200D0BBAD0063493500BEA99A00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00D8D3D000726A6400EBEBEB00B5B5B4000000
+      000071706F00F6F2EE00F0E7E100EBDFD800D0BDAF0063493500C3AE9E00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FDFEFE00605C5900968F8C00312B28002928
+      2700C5C1BF00F8F4F200F3ECE800EEE5DF00D1BEB20063493500C8B2A300FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00CFCAC70048403B00000000005958
+      5700FFFFFF00FBF9F800F7F2EF00F2EAE500D1C0B40063493500BEA99A00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF006668690024242500C8C7
+      C700FFFFFF00FFFFFF00FAF7F500F5EFEC00D1C1B60063493500C3AE9E00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00C5C4C40079706C00FFFF
+      FF00FFFFFF00FFFFFF00FDFDFC00F9F5F300F4EDE90063493500EAAA8B00EAAA
+      8B00EAAA8B00EAAA8B00E9A58400E99F7A00E7976E00E68E6200E5865600E37D
+      4A00E3764000E2723900E2723900E2723900E2723900C8622F00EAAA8B00FFC2
+      A200FFC2A200FEC09F00FDBD9A00FCB99600FBB59000FAB08B00F9AB8400F8A7
+      7D00F6A27700F59D7100F5996A00F3956500F3956500CD653100EAAA8B00EAAA
+      8B00EAAA8B00EAAA8B00EAAA8B00EAA68600E9A17F00E89B7600E7946C00E68E
+      6200E5875800E4814E00E47B4600E3763E00E3763E00E2723900FF00FF00FF00
+      FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+      FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00}
+    Wx_Class = 'wxMessageDialog'
+    Wx_Caption = 'Message box'
+    Wx_DialogStyle = []
+  end
+  object DestinationSelection: TWxDirDialog
+    Left = 80
+    Top = 0
+    Width = 28
+    Height = 27
+    TabOrder = 11
+    Glyph.Data = {
+      36040000424D3604000000000000360000002800000010000000100000000100
+      2000000000000004000000000000000000000000000000000000FF00FF00FF00
+      FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+      FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00B5A59400634A
+      3100634A3100634A3100634A3100634A3100634A3100634A3100634A3100634A
+      3100634A3100634A3100634A3100634A3100634A3100634A3100B5A59400FFFF
+      FF00DEDED600DED6D600DED6CE00DECEC500DEC5BD00DEC5B500DEBDAD00DEBD
+      A500DEBDA500DEBDA500DEBDA500DEBDA500CEB5A500634A3100B5A59400FFFF
+      FF0073848C006B7B8400424A5200313A42002129310010101900101019001010
+      190010101900F7E6DE00F7E6DE00F7DED600CEB5A500634A3100B5A59400FFFF
+      FF007384940094E6FF0063CEF7004AC5EF0042B5E60031ADDE00299CD6001984
+      B50019192100F7E6DE00F7E6DE00F7E6DE00CEB5A500634A3100B5A59400FFFF
+      FF00849CA500ADEFFF0094E6FF007BDEFF006BCEF70052BDF7003AB5EF00198C
+      C5005A636B00F7E6E600F7E6E600F7E6DE00CEB5A500634A3100BDA59400FFFF
+      FF00849CA500B5F7FF009CE6FF008CDEFF0073D6F70063CEF7004ABDEF001994
+      CE0063737B00F7EFE600F7EFE600F7EFE600CEB5AD00634A3100BDAD9C00FFFF
+      FF008C9CA500BDF7FF00ADEFF7009CE6FF0084DEFF0073D6F70063C5F700199C
+      D60063737B00FFEFEF00FFEFEF00F7EFE600CEBDB500634A3100C5AD9C00FFFF
+      FF008CA5AD00BDF7FF00BDEFF700ADEFF7008C9CA500849CA50084949C008494
+      9C00CECECE00FFF7EF00FFF7EF00F7EFEF00CEBDB500634A3100C5B5A500FFFF
+      FF00E6EFF7008CA5AD008CA5AD0094B5C500DEE6EF00FFFFFF00FFFFFF00634A
+      3100634A3100634A3100634A3100FFF7EF00CEBDB500634A3100BDAD9C00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFF7F700FFF7F700FFF7F700CEBDB500634A3100C5AD9C00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00634A
+      3100634A3100634A3100634A3100FFF7F700CEBDB500634A3100C5B5A500FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFF700FFF7F700634A3100E6AD8C00E6AD
+      8C00E6AD8C00E6AD8C00E6A58400E69C7B00E6946B00E68C6300E6845200E67B
+      4A00E6734200DE733A00DE733A00DE733A00DE733A00C5633100E6AD8C00FFC5
+      A500FFC5A500FFBD9C00FFBD9C00FFB59400FFB59400F7AD8C00F7AD8400F7A5
+      7B00F7A57300F79C7300F79C6B00F7946300F7946300CE633100E6AD8C00E6AD
+      8C00E6AD8C00E6AD8C00E6AD8C00E6A58400E6A57B00E69C7300E6946B00E68C
+      6300E6845A00E6844A00E67B4A00E6734200E6734200DE733A00}
+    Wx_Class = 'wxDirDialog'
+    Wx_Message = 'Choose a directory'
+    Wx_DirDialogStyle = []
+  end
+end
