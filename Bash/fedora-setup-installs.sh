@@ -10,7 +10,8 @@ dnfinstalls=(
 	  ["htop"]="dnf install htop --assumeyes" 
 	  ["iptraf"]="dnf install iptraf --assumeyes" 
 	  ["w3m"]="dnf install w3m --assumeyes"
-	  ["nano"]="dnf install nano --assumeyes"
+	  ["vim"]="dnf install vim --assumeyes"
+	  ["filezilla"]="dnf install filezilla --assumeyes"
 	 )
 
 echo "[ Performing Installs ]"
