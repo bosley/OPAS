@@ -12,6 +12,7 @@ dnfinstalls=(
 	  ["w3m"]="dnf install w3m --assumeyes"
 	  ["vim"]="dnf install vim --assumeyes"
 	  ["filezilla"]="dnf install filezilla --assumeyes"
+	  ["openjdk"]="dnf install java --assumeyes"
 	 )
 
 echo "[ Performing Installs ]"
@@ -22,9 +23,16 @@ do
 	${dnfinstalls[$k]}
 done
 
-echo "[ Updating ]"
+echo "Getting Developer tools"
+dnf groupinstall "Development tools" --assumeyes
 
+echo "[ Updating ]"
 dnf update --assumeyes
+
+
+
+
+
 
 
 
