@@ -1,2 +1,2 @@
 # OPAS
-Old projects and assignemnts
+Other projects and assignemnts
