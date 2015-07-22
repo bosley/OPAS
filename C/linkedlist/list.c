@@ -3,7 +3,7 @@
 
 #include "list.h"
 
-void init_list(List *list, void (*destroy)(void *data))
+void list_init(List *list, void (*destroy)(void *data))
 {
 	list->size = 0;
 	list->destroy = destroy;

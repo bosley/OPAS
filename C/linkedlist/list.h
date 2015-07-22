@@ -25,7 +25,7 @@ void list_init(List *list, void (*destroy)(void *data));
 
 void list_destroy(List *list);
 
-int list_inst_next(List *list, ListElement *el, const void *data);
+int list_ins_next(List *list, ListElement *el, const void *data);
 
 int list_rem_next(List *list, ListElement *el, void **data);
 
