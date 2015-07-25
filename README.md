@@ -1,2 +1,6 @@
 # OPAS
-Other projects and assignemnts
+Other projects and assignemnts.
+
+All items here can be used, modified, etc. 
+
+
