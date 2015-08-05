@@ -26,11 +26,15 @@ done
 echo "Getting Developer tools"
 dnf groupinstall "Development tools" --assumeyes
 
+echo "Installing Flash"
+rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
+dnf install flash-plugin nspluginwrapper alsa-plugins-pulseaudio libcurl --assumeyes
+dnf groupinstall "Sound and Video" --assumeyes
+dnf install flash-plugin nspluginwrapper curl --assumeyes
+
 echo "[ Updating ]"
 dnf update --assumeyes
-
-
-
 
 
 
