@@ -6,7 +6,7 @@ if [ $(whoami) != 'root' ]; then
 	exit 1;
 fi
 
-DEBUG=true
+DEBUG=false
 
 THE_HOST=1
 THE_DOMAIN=2
@@ -63,30 +63,10 @@ else
 fi
 clear
 
-echo "Host set"
-echo "Installing postfix, dovecot"
-yum -y install postfix dovecot
-
-echo "Making ssl key"
-mkdir /etc/postfix/ssl
-cd /etc/postfix/ssl
-openssl genrsa -des3 -out server.key 2048
-openssl rsa -in server.key -out server.key.insecure
-mv server.key server.key.secure
-mv server.key.insecure server.key
-clear
-
-echo ""
-echo "Please leave the challenge password blank. Press eneter when prompted."
-echo ""
-
-openssl req -new -key server.key -out server.csr
-openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
-
 APPEND="
 myhostname = $s_host
 mydomain = $s_domain
-myorigin = $mydomain
+myorigin = $s_domain
 home_mailbox = mail/
 mynetworks = 127.0.0.0/8
 inet_interfaces = all
@@ -109,9 +89,29 @@ smtpd_tls_session_cache_timeout = 3600s
 tls_random_source = dev:/dev/urandom
 "
 
+cat <<EOT >> /etc/postfix/main.cf
+$APPEND
+EOT
+
+echo "Host set"
+echo "Installing postfix, dovecot"
+yum -y install postfix dovecot
+
+echo "Making ssl key"
+mkdir /etc/postfix/ssl
+cd /etc/postfix/ssl
+openssl genrsa -des3 -out server.key 2048
+openssl rsa -in server.key -out server.key.insecure
+mv server.key server.key.secure
+mv server.key.insecure server.key
 clear
-echo "Adding settings to : /etc/postfix/main.cf "
-echo $APPEND >> /etc/postfix/main.cf
+
+echo ""
+echo "Please leave the challenge password blank. Press eneter when prompted."
+echo ""
+
+openssl req -new -key server.key -out server.csr
+openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 
 # Insert settings at line 15 in /etc/postfix/master.cf
 sed -i "15i submission     inet  n       -       n       -       -       smtpd\n  -o syslog_name=postfix/submission\n  -o smtpd_sasl_auth_enable=yes\n  -o smtpd_recipient_restrictions=permit_sasl_authenticated,reject\n  -o milter_macro_daemon_name=ORIGINATING\nsmtps     inet  n       -       n       -       -       smtpd\n  -o syslog_name=postfix/smtps\n  -o smtpd_sasl_auth_enable=yes\n  -o smtpd_recipient_restrictions=permit_sasl_authenticated,reject\n  -o milter_macro_daemon_name=ORIGINATING\n" /etc/postfix/master.cf
@@ -134,10 +134,11 @@ echo "Adding firewall rules . . . "
 firewall-cmd --permanent --add-service=smtp
 firewall-cmd --permanent --add-port=587/tcp
 firewall-cmd --permanent --add-port=465/tcp
+firewall-cmd --permanent --add-port=25/tcp
 firewall-cmd --reload
 
-sed -i '30s/.*/mail_location = maildir:~/mail/' /etc/dovecot/conf.d/10-mail.conf
-sed -i '50s/.*/pop3_uidl_format = %08Xu%08Xv' /etc/dovecot/conf.d/20-pop3.conf
+sed -i '30s/.*/mail_location = maildir:~\/mail/' /etc/dovecot/conf.d/10-mail.conf
+sed -i '50s/.*/pop3_uidl_format = %08Xu%08Xv/' /etc/dovecot/conf.d/20-pop3.conf
 
 systemctl restart dovecot
 
