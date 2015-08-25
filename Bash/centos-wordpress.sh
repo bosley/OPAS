@@ -14,7 +14,7 @@ echo " You are about to be prompted for the database root password "
 
 mysql -u root -p << EOF
 CREATE DATABASE wordpress;
-CREATE USER wordpressuser@localhost IDENTIFIED BY "$wp_pass";
+CREATE USER 'wordpressuser' IDENTIFIED BY "$wp_pass";
 GRANT ALL PRIVILEGES ON wordpress.* TO wordpressuser@localhost IDENTIFIED BY '$wp_pass';
 FLUSH PRIVILEGES;
 exit
@@ -44,9 +44,9 @@ cd /var/www/html
 cp wp-config-sample.php wp-config.php
 
 # Edit settings
-sed -i "19s/.*/define( 'DB_NAME',       'wordpress' );/" wp-config.php
-sed -i "22s/.*/define( 'DB_USER',       'wordpressuser' );/" wp-config.php
-sed -i "35s/.*/define( 'DB__PASSWORD',  '$wp_pass' );/" wp-config.php
+sed -i "23s/.*/define( 'DB_NAME',       'wordpress' );/" wp-config.php
+sed -i "26s/.*/define( 'DB_USER',       'wordpressuser' );/" wp-config.php
+sed -i "29s/.*/define( 'DB__PASSWORD',  '$wp_pass' );/" wp-config.php
 
 echo ""
 echo "  Must complete setup via webpage"
