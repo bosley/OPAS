@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [ $(whoami) != 'root' ]; then
-	echo "You need to be root"
-	exit 1;
+        echo "You need to be root"
+        exit 1;
 fi
 
 echo "Set up database. . . "
@@ -21,9 +21,14 @@ exit
 EOF
 
 # Get php ready
-yum install php php-gd php-mysql -assumeyes
+yum install php php-gd php-mysql -y
 
-systemctl httpd restart
+systemctl restart httpd.service
+
+# Make sure that rsync & wget are installed
+yum install rsync -y
+yum install wget -y
+
 
 # Get the lastes wordpress, and rsynv to public dir
 cd ~
@@ -39,15 +44,13 @@ cd /var/www/html
 cp wp-config-sample.php wp-config.php
 
 # Edit settings
-sed -i "19s/.*/define( 'DB_NAME',     	'wordpress' );/" wp-config.php
-sed -i "22s/.*/define( 'DB_USER',     	'wordpressuser' );/" wp-config.php
+sed -i "19s/.*/define( 'DB_NAME',       'wordpress' );/" wp-config.php
+sed -i "22s/.*/define( 'DB_USER',       'wordpressuser' );/" wp-config.php
 sed -i "35s/.*/define( 'DB__PASSWORD',  '$wp_pass' );/" wp-config.php
 
 echo ""
 echo "  Must complete setup via webpage"
 echo ""
-
-
 
 
 
