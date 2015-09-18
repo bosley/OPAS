@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>53E68274-E9B4-489E-9BCD-86848F8607E3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Interaction</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2C36308ADC809E149F42D0CFFE4F5B9FBF2C2EF9</key>
+		<string>https://github.com/joshbosley/OPAS</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Swift/Interaction/Interaction.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2C36308ADC809E149F42D0CFFE4F5B9FBF2C2EF9</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/joshbosley/OPAS</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2C36308ADC809E149F42D0CFFE4F5B9FBF2C2EF9</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2C36308ADC809E149F42D0CFFE4F5B9FBF2C2EF9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>OPAS</string>
+		</dict>
+	</array>
+</dict>
+</plist>

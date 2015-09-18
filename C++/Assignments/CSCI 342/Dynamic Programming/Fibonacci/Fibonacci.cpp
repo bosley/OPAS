@@ -8,7 +8,7 @@
 
 /*
     Recursive fibonacci call
-    ~ O( n^n )
+    O( 2^n )
  
     Linear fibonacci call
     O(n)
@@ -45,7 +45,7 @@ void linFib(long n)
 
 int main()
 {
-    long n = 40;
+    long n = 100;
     
     std::cout << " Calculating fib to : " << n << ". This could take some time." << std::endl;
     
