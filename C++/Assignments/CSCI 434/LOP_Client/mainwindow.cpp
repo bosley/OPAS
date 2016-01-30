@@ -6,7 +6,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->cancelButton->setEnabled(false);
+
+    // Connect the engine jobRet signal to the local slot for information display
+    connect(&mainEngine, SIGNAL(jobRet(QString, QString)), this, SLOT(indicateJobRetrieved(QString, QString)));
 
     setState(STATE_IDLE);
 }
@@ -16,11 +18,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::indicateJobRetrieved()
+void MainWindow::indicateJobRetrieved(QString type, QString data)
 {
     // Called by MainEngine to let us know that a new job
     // has been retrieved and is being worked on
     setState(STATE_PROC);
+    QString outp = "Job type handed from server : [" + type + "]";
+    outp += "\n\n" + data;
+    ui->informationOut->setPlainText(outp);
 }
 
 void MainWindow::on_acceptButton_clicked()
@@ -60,6 +65,9 @@ void MainWindow::setState(int state)
         this->ui->labelClientState->setText("REQUESTING");
         this->ui->informationOut->setPlainText("Sending the server a request");
         mainEngine.retrieveNewJob();
+
+        // Wait a single second for display purposes
+        QThread::sleep(2);
         break;
     }
     case STATE_PROC:
