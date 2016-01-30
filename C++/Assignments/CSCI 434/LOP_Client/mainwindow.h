@@ -23,7 +23,7 @@ public:
     ~MainWindow();
 
 public slots:
-    void indicateJobRetrieved();
+    void indicateJobRetrieved(QString type, QString data);
 
 private slots:
     void on_acceptButton_clicked();

@@ -12,6 +12,7 @@ public:
     void retrieveNewJob();
 
 signals:
+    void jobRet(QString type, QString data);
 
 public slots:
 
