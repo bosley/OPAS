@@ -6,7 +6,7 @@ SocketHandler::SocketHandler(QObject *parent)
     Q_UNUSED(parent);
 
     // Set server information
-    host = "tacosalad.lssu.edu";
+    host = "h9k.lssu.edu";
     port = 5004;
 }
 
@@ -20,9 +20,8 @@ void SocketHandler::SubmitQuery(int request_type, QString data)
     if (socket->waitForConnected(5000))
     {
         // When connected, build a socket query based on parameters
-
         QString temp;
-        qDebug() << "Connected to server!";
+        qDebug() << "[SOCKET HANDLER] : Connected.";
         // Byte array for converting qstring to const char *
         QByteArray bytes;
         const char * query;
@@ -31,11 +30,11 @@ void SocketHandler::SubmitQuery(int request_type, QString data)
         {
             case REQ_NEW_ITEM:
                 qDebug() << "[SOCKET HANDLER] : Requesting new job.";
-                temp = "1;" + data;
+                temp = "n^" + data;
                 break;
             case UPD_CUR_ITEM:
                 qDebug() << "[SOCKET HANDLER] : Requesting update on job.";
-                temp = "2;" + data;
+                temp = "u^" + data;
                 break;
             default:
                 break;
@@ -50,7 +49,6 @@ void SocketHandler::SubmitQuery(int request_type, QString data)
         socket->waitForBytesWritten(10000);
 
         // Recieve a response from the server
-        /*
         QByteArray arr;
         while(!arr.contains(SERVER_RECV_DELIMITER))
         {
@@ -61,8 +59,12 @@ void SocketHandler::SubmitQuery(int request_type, QString data)
         int b = arr.indexOf(SERVER_RECV_DELIMITER);
         QByteArray message = arr.left(b);
         arr = arr.mid(b);
+        qDebug() << "[SOCKET HANDLER] : DONE." ;
         emit dataReady(message);
-*/
         socket->close();
+    }
+    else
+    {
+        qDebug() << "[SOCKET HANDLER] : COULD NOT CONNECT.";
     }
 }
