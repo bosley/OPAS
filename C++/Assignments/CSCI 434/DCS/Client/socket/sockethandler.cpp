@@ -6,7 +6,8 @@ SocketHandler::SocketHandler(QObject *parent)
     Q_UNUSED(parent);
 
     // Set server information
-    host = "HOST";
+    host = "h9k.lssu.edu";
+    host = "h9k.lssu.edu";
     port = 5004;
 }
 
