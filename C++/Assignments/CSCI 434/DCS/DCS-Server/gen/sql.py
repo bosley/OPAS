@@ -2,10 +2,10 @@ import MySQLdb
 import datetime
 
 sql_settings = {
-	"ADDR": "joshbosley.com",
-	"USER": "dbconn",
-	"PASS": "112358jab",
-	"DB": "csci434" 
+	"ADDR": "HOST",
+	"USER": "USER",
+	"PASS": "PASS",
+	"DB": "TABLE" 
 }
 
 def update(query):
