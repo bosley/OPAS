@@ -7,6 +7,7 @@
 
 #define REQ_NEW_ITEM 1
 #define UPD_CUR_ITEM 2
+#define SERVER_RECV_DELIMITER "\t"
 
 class SocketHandler : public QObject
 {
