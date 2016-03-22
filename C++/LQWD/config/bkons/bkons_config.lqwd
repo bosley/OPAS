@@ -1,0 +1,28 @@
+#
+#
+#	Created By: Josh Bosley
+
+#	Default Console display settings
+
+font:Courier
+fontSize:13
+fontColor:0,255,0
+backgroundColor:0,0,0
+activityName:console
+
+# Promt supports html <font> colors
+promptColor:white
+
+# 	Input buffer settings
+#
+#	The input buffer handles user input while
+#	they are putting in text
+
+# Charachter input limit
+bufferCap:1024
+maxHistory:1000
+maxBlockCount:1000
+
+
+# This moduleId should always be set to 0
+moduleId:0

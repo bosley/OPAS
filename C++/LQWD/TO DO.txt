@@ -1,0 +1,15 @@
+
+-> Move QStringList CoreEngine::commandFilter(QString input) to cmdNexus and apply before translation. 
+
+
+1. Figure out why down arrow requires two presses 
+
+1. Setup left arrow function [ currently screwing up the buffer ]
+
+2. Setup right arrow function [ not written yet ]
+
+5. Setup system interaction in CoreEngin
+
+n . Write up the readme.md to include how to make modules, and then expand with other modules
+
+? . Profit

@@ -1,0 +1,11 @@
+
+The following is the license information for the icons used in the Lqwd
+All icons used in Lqwd are not part of the bkons widget. The widget is
+under the its own license.
+
+
+term.ico 
+	- License: Free for non commercial use
+	- https://www.iconfinder.com/icons/100263/command_prompt_icon#size=128
+		- User : Dakirby309
+		- Website Listed : http://dakirby309.deviantart.com/

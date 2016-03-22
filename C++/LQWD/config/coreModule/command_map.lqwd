@@ -1,0 +1,83 @@
+#
+#
+#	Created By: Josh Bosley
+#
+#	This file is for the mapping of commands for core module
+#       The first segment is Qt specific commands, and the second
+#       second segment contains os-specific system commands
+#
+
+request_help
+<
+    command : help : [Give command list]
+>
+
+list_directory
+<
+    command : l : [List the given directory]
+>
+
+change_directory
+<
+    command : cd : [Change to a directory]
+>
+
+create_directory
+<
+    command : mkdir : [Create a new directory]
+>
+
+remove_document
+<
+    command : rm : [Remove]
+    args :
+        -rf : [Remove Folder]
+        -jk : [Just Kidding]
+>
+
+clear_console
+<
+    command : c : [Clear the console]
+>
+
+save_output
+<
+    command : cout : [Save command output]
+>
+
+load_module
+<
+    command : mload : [Load a different module]
+>
+
+working_dir
+<
+    command : cwd : [Show current working directory]
+>
+
+# ------------------------------------------------------------------------------
+#	First field is the command you want to use in the terminal,
+#	the second is what that will map to on windows, and the third is for nix
+#	Setting a field with a * will tell Lqwd to use the previous fields entry,
+#	if the previous field is also a *, or a ! it will use the first entry
+#
+#	Use ! to signal no command listed.
+#	Any incomplete field will be ignored
+#	Any unknown command will not be executed.
+#	command:windows:*nix
+# ------------------------------------------------------------------------------
+
+os_commands
+<
+    make:*:*
+
+    exit:*:*
+
+    host:hostname:*
+
+    ip:ipconfig:ifconfig
+
+    ping:*:ping -c 4
+
+    uptime:!:*
+>
