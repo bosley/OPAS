@@ -1,4 +1,3 @@
-import sql
 import MySQLdb
 import datetime
 
