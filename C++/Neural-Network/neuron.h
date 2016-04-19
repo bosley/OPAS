@@ -18,38 +18,28 @@ class Neuron
 {
 public:
     Neuron(unsigned numOutputs, unsigned index);
-    void setOutputVal(double val){
-        outputVal = val;
-    }
-    double getOutputVal(void) const {
-        return outputVal;
-    }
+    void setOutputVal(double val);
+    double getOutputVal(void) const;
     void doFeedForward(const std::vector<Neuron> &prevLayer);
-
     void calcOutputGradients(double targetVal);
     void calcHiddenGradients(const std::vector<Neuron> &nextLayer);
     void updateInputWeights(std::vector<Neuron> &prevLayer);
 
 private:
-
     double eta; // [0.0 ... 1.0] - Overall net train rate
     double alpha; // [0.0 .. n]  - Multiplier of last weight change(momentum)
-
-
     double outputVal;
-    unsigned currIndex;
     double gradient;
+    unsigned currIndex;
     std::vector<netConn> outputWeights;
 
     // Get random [0 -> 1]
-    static double randomWeight(void){
-        return rand() / double(RAND_MAX);
-    }
+    static double randomWeight(void);
 
-    double sumDOW(const std::vector<Neuron> &nextLayer);
-
+    // Weight calculation
     static double transferFunction(double x);
     static double transferDerivative(double x);
+    double sumDOW(const std::vector<Neuron> &nextLayer);
 
 };
 

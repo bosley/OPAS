@@ -8,6 +8,7 @@ NNet::NNet()
 void NNet::setDebug(const bool state)
 {
     debug = state;
+    n_Net.setDebug(state);
 }
 
 void NNet::loadTrainingFile(const std::string file)
@@ -147,6 +148,7 @@ void NNet::loadTrainingFile(const std::string file)
             }
         }
     }
+    iFile.close();
 }
 
 std::vector<std::string> NNet::getTokens(std::string &s)

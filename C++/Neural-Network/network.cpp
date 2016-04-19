@@ -58,8 +58,6 @@ void Network::doFeedForward(const std::vector<double> &inputVals)
             n_layers[i][n].doFeedForward(prevLayer);
         }
     }
-
-
 }
 
 void Network::doBackPropagation(const std::vector<double> &targetVals)
@@ -76,13 +74,11 @@ void Network::doBackPropagation(const std::vector<double> &targetVals)
     n_err /= outputLayer.size()-1;
     n_err = sqrt(n_err);
 
-
     // Calculate out layer gradients
     for(unsigned n=0; n < outputLayer.size()-1; ++n)
     {
         outputLayer[n].calcOutputGradients(targetVals[n]);
     }
-
 
     // Calculate gradients on hidden layers
     for(unsigned layer = n_layers.size()-2; layer > 0; --layer)

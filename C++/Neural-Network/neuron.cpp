@@ -3,17 +3,24 @@
 
 Neuron::Neuron(unsigned numOutputs, unsigned index)
 {
-
     eta = 0.15;
     alpha = 0.5;
-
     for(unsigned c = 0; c < numOutputs; ++c)
     {
         outputWeights.push_back(netConn());
         outputWeights.back().weight = randomWeight();
     }
-
     currIndex = index;
+}
+
+void Neuron::setOutputVal(double val)
+{
+    outputVal = val;
+}
+
+double Neuron::getOutputVal() const
+{
+    return outputVal;
 }
 
 void Neuron::doFeedForward(const std::vector<Neuron> &prevLayer)
@@ -49,7 +56,6 @@ void Neuron::updateInputWeights(std::vector<Neuron> &prevLayer)
     {
         Neuron &neuron = prevLayer[n];
         double oldDelta = neuron.outputWeights[currIndex].deltaWeight;
-
         double newDelta = eta * neuron.getOutputVal() * gradient + alpha * oldDelta;
 
         neuron.outputWeights[currIndex].deltaWeight = newDelta;
@@ -57,10 +63,14 @@ void Neuron::updateInputWeights(std::vector<Neuron> &prevLayer)
     }
 }
 
+double Neuron::randomWeight()
+{
+    return rand() / double(RAND_MAX);
+}
+
 double Neuron::sumDOW(const std::vector<Neuron> &nextLayer)
 {
     double sum = 0.0;
-
     for(unsigned n = 0; n < nextLayer.size()-1; ++n)
     {
         sum += outputWeights[n].weight * nextLayer[n].gradient;
