@@ -5,89 +5,66 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    // We aren't running yet, so init to false and create UI
+    state = false;
     ui->setupUi(this);
-
-    // Connect the engine jobRet signal to the local slot for information display
-    connect(&mainEngine, SIGNAL(jobRet(QString, QString)), this, SLOT(indicateJobRetrieved(QString, QString)));
-
-    setState(STATE_IDLE);
+    // Make connection with engine so it can post to the textBox
+    connect(&engine, SIGNAL(userSignal(QString)), this, SLOT(updateUser(QString)));
+    // Make connection with engine so that we can send signals to the engine :D
+    connect(this, SIGNAL(sendEngineSignal(char)), &engine, SLOT(listenForSignal(char)));
+    // Make connection with engine so it can inform us when its completed a job
+    connect(&engine, SIGNAL(jobCompleted()), this, SLOT(jobComplete()));
 }
 
 MainWindow::~MainWindow()
 {
+    // Destructor, meh
     delete ui;
 }
 
-void MainWindow::indicateJobRetrieved(QString type, QString data)
+void MainWindow::updateUser(QString item)
 {
-    // Called by MainEngine to let us know that a new job
-    // has been retrieved and is being worked on
-    setState(STATE_PROC);
-    QString outp = "Job type handed from server : [" + type + "]";
-    outp += "\n\n" + data;
-    ui->informationOut->setPlainText(outp);
+    // Update user with some string given, in addition to a time stamp
+    QDateTime today = QDateTime::currentDateTime();
+    if(item != "STPBRK")
+    {
+        QString now = today.toString("yyyy-MM-dd hh:mm:ss");
+        ui->plainTextEdit->insertPlainText("\n[" + now  + "]\t");
+        ui->plainTextEdit->insertPlainText(item);
+    }
+    else
+        ui->plainTextEdit->insertPlainText("\n\n");
+
+    QTextCursor tc = ui->plainTextEdit->textCursor();
+    tc.movePosition(QTextCursor::End);
+    ui->plainTextEdit->setTextCursor(tc);
+}
+void MainWindow::on_pushButton_clicked()
+{
+    flipInterface();
 }
 
-void MainWindow::on_acceptButton_clicked()
+void MainWindow::jobComplete()
 {
-    setState(STATE_SEND);
+    flipInterface();
 }
 
-void MainWindow::on_cancelButton_clicked()
+void MainWindow::flipInterface()
 {
-    setState(STATE_IDLE);
-}
-
-void MainWindow::setState(int state)
-{
-    currentState = state;
-    ui->cancelButton->setEnabled(true);
-
-    switch(state)
+    if(state)
     {
-    case STATE_IDLE:
-    {
-        ui->cancelButton->setEnabled(false);
-        this->ui->acceptButton->setEnabled(true);
-        this->ui->labelClientState->setText("IDLE");
-        this->ui->informationOut->setPlainText("Press Accept to send request for new job from the server");
-        break;
+        // Set trun state to false, change button text, and send a stop signal to the engine
+        state = false;
+        ui->pushButton->setText("Initiate");
+        emit sendEngineSignal('s');
+        updateUser("STPBRK");
     }
-    case STATE_WAIT:
+    else
     {
-        this->ui->acceptButton->setEnabled(false);
-        this->ui->labelClientState->setText("WAITING");
-        break;
-    }
-    case STATE_SEND:
-    {
-        qDebug() << "SETTING TO SEND STATE";
-
-
-        this->ui->acceptButton->setEnabled(false);
-        this->ui->labelClientState->setText("REQUESTING");
-        this->ui->informationOut->setPlainText("Sending the server a request");
-        mainEngine.retrieveNewJob();
-
-        // Wait a single second for display purposes
-        //QThread::sleep(2);
-        break;
-    }
-    case STATE_PROC:
-    {
-        this->ui->acceptButton->setEnabled(false);
-        this->ui->labelClientState->setText("PROC REQUEST");
-        this->ui->informationOut->setPlainText("Server has sent a new job. That job is being worked on.");
-        break;
-    }
-    /*
-        Will need to add a few more state cases to allow for updatinf (sending solution back),
-        in addition to writing functionality to inform the user what it is that is being worked on,
-        and to show the result.
-
-        Create functionality to request stats from server
-    */
-    default:
-        break;
+        // Set run state to true, change button text, and tell engine to start retrieving jobs
+        // Once engine.retieveNewJob() is initially called, engine will continue working until stop signal send
+        state = true;
+        ui->pushButton->setText("Stop");
+        engine.retrieveNewJob();
     }
 }

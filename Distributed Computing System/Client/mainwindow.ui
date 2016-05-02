@@ -6,135 +6,39 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>531</width>
-    <height>354</height>
+    <width>557</width>
+    <height>407</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>213</width>
-    <height>354</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>531</width>
-    <height>354</height>
-   </size>
-  </property>
   <property name="windowTitle">
-   <string>434C - Bosley</string>
+   <string>Josh A. Bosley - DCS - Client</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QPlainTextEdit" name="plainTextEdit">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>191</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Client State :</string>
-    </property>
-    <widget class="QLabel" name="labelClientState">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>171</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Courier New</family>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>IDLE</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QPushButton" name="acceptButton">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>260</y>
-      <width>91</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>ACCEPT</string>
-    </property>
-   </widget>
-   <widget class="QGroupBox" name="groupBox_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>70</y>
-      <width>191</width>
-      <height>181</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Information :</string>
-    </property>
-    <widget class="QPlainTextEdit" name="informationOut">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>171</width>
-       <height>151</height>
-      </rect>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QPushButton" name="cancelButton">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>260</y>
-      <width>91</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>CANCEL</string>
-    </property>
-   </widget>
-   <widget class="QGroupBox" name="groupBox_3">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>10</y>
-      <width>301</width>
+      <width>541</width>
       <height>291</height>
      </rect>
     </property>
-    <property name="title">
-     <string>History</string>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
-    <widget class="QTableWidget" name="tableWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>281</width>
-       <height>261</height>
-      </rect>
-     </property>
-    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>310</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Initiate</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -142,8 +46,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>531</width>
-     <height>21</height>
+     <width>557</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>

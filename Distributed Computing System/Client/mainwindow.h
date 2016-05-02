@@ -1,14 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QThread>
+#include <QDateTime>
 #include <QMainWindow>
-#include "framework/engine/engine.h"
-
-#define STATE_IDLE 0
-#define STATE_SEND 1
-#define STATE_WAIT 2
-#define STATE_PROC 3
+#include "engine/engine.h"
 
 namespace Ui {
 class MainWindow;
@@ -23,20 +18,21 @@ public:
     ~MainWindow();
 
 public slots:
-    void indicateJobRetrieved(QString type, QString data);
+    void updateUser(QString);
+    void jobComplete();
 
 private slots:
-    void on_acceptButton_clicked();
+    void on_pushButton_clicked();
 
-    void on_cancelButton_clicked();
+signals:
+    void sendEngineSignal(char);
 
 private:
     Ui::MainWindow *ui;
-    Engine mainEngine;
 
-    int currentState;
-
-    void setState(int state);
+    bool state;
+    Engine engine;
+    void flipInterface();
 };
 
 #endif // MAINWINDOW_H
