@@ -16,7 +16,7 @@ class Journal:
                 self.data = load(r)
         except IOError:
             self.data = {
-                "init": "[CREATED->"+ EnsureST(datetime.now()) + "]" 
+                "init": ["[CREATED->"+ EnsureST(datetime.now()) + "]"]
                 }
             self.save()
 
@@ -54,8 +54,10 @@ class Journal:
     view ........ Show entire file
     tail ........ Show last lines of file
     set ......... Set current working file
+            \.... use '.' to set to current date
     add ......... Append to current working file
     what ........ Tell what file is set
+    list ........ Show all entries
     clear ....... Clear screen
     quit, q ..... Quit journal
 
@@ -66,53 +68,58 @@ class Journal:
                     cout("yellow", self.current_working_file)
                 else:
                     cout("yellow", "No file set")
-
-            if x == 'clear':
+            elif x == 'clear':
                 ClearScreen()
-
-            if x == 'save':
+            elif x == 'save':
                 self.save()
+            elif x == 'list':
+                cout("yellow", "[--------- (Entries) --------]")
+                for x in self.data:
+                    displayFixedWidthText("lightgreen", "\t"+x)
+            else:
+                pieces = x.split(" ")
 
-            pieces = x.split(" ")
+                if len(pieces) > 0:
+                    if len(pieces) < 2:
+                        cout("yellow", "Usage:  <command> <log_entry> ")
+                    else:
+                        if pieces[0] == 'set':
+                            if pieces[1] == 'init':
+                                cout("yellow", "Not allowed - use a different name")
+                            else:
+                                if pieces[1] == '.':
+                                    self.current_working_file = datetime.now().strftime("%Y-%m-%d")
+                                else:
+                                    self.current_working_file = pieces[1]
 
-            if len(pieces) > 0:
-                if len(pieces) < 2:
-                    cout("yellow", "Usage:  <command> <log_entry> ")
-                else:
-                    if pieces[0] == 'set':
-                        if pieces[1] == 'init':
-                            cout("yellow", "Not allowed - use a different name")
-                        else:
-                            self.current_working_file = pieces[1]
+                                if pieces[1] not in self.data:
+                                    self.data[self.current_working_file] = []
+
+                        if pieces[0] == 'view':
+                            if pieces[1] == '.':
+                                pieces[1] == datetime.now().strftime("%Y-%m-%d")
                             if pieces[1] not in self.data:
-                                self.data[self.current_working_file] = []
+                                cout("yellow", "Unknown Log")
+                            else:
+                                ClearScreen()
+                                for x in self.data[pieces[1]]:
+                                    displayFixedWidthText("lightgreen", x)
 
-                    if pieces[0] == 'view':
-                        if pieces[1] not in self.data:
-                            cout("yellow", "Unknown Log")
-                        else:
-                            ClearScreen()
-                            for x in self.data[self.current_working_file]:
-                                displayFixedWidthText("lightgreen", x)
-
-                    if pieces[0] == 'tail':
-                        if self.current_working_file is not None :
-                            for x in self.data[self.current_working_file][:5]:
-                                displayFixedWidthText("lightgreen", x)
-                        else:
-                            cout("yellow", "No file set - Use 'set <log>'")
-                            
-                    if pieces[0] == 'add':
-                        if len(pieces) < 3:
-                            cout("yellow", "usage <add> <log> <some data>")
-                        else:
+                        if pieces[0] == 'tail':
                             if self.current_working_file is not None :
-                                self.data[self.current_working_file].append(' '.join(pieces[2:]))
+                                for x in self.data[self.current_working_file][:5]:
+                                    displayFixedWidthText("lightgreen", x)
+                            else:
+                                cout("yellow", "No file set - Use 'set <log>'")
+                                
+                        if pieces[0] == 'add':
+                            if self.current_working_file is not None :
+                                self.data[self.current_working_file].append(' '.join(pieces[1:]))
                             else:
                                 cout("yellow", "No file set - Use 'set <log>'")
                                 
                             
-                            
+                    
 
 
         
