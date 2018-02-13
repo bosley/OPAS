@@ -1,0 +1,9 @@
+
+[X]. Create method to notify user as-per configuration settings.
+	[X]. Test method to death
+
+[X]. Create method to edit existing entries in self.config.
+
+[X]. Create a better user experience for adding a new item.
+
+4. See about adding other actions.

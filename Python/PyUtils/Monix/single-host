@@ -1,0 +1,4 @@
+ip-range:127.0.0.1
+port-range:22
+output-file:example-single-scan
+
