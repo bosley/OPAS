@@ -1,0 +1,33 @@
+				Syntax
+
+Symbol	Usage						Description
+-------------------------------------------------------------------
+@		file_name				Load file 
+
+Definitions						[- fact member]
+--------------------
+-		fact member 				Define Fact
+.		rule token member			Define Rule
+
+Inquiry (yes/no) 					[? fact member]
+--------------------
+?		fact member				Perform fact inquiry
+?		rule token member			Perform rule inquiry
+
+Retrieve Information 					[$ fact]
+--------------------
+$		fact					Return fact members
+=		rule					Return rule tokens
+~		rule token				Return rule's token members
+
+Deletions 						[! - fact]
+--------------------
+! -		fact					Delete a fact
+! -		fact member				Delete a fact member
+! . 		rule					Delete a rule
+! .		rule token				Delete a token
+! .		rule token member			Delete a token member
+
+Notes:
+	Bolog input is converted to lower case. 
+	  -> This means "Moot" and "moot" are equivalent
