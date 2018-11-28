@@ -1,0 +1,21 @@
+Requirements  -
+
+    pycrypto
+
+
+Process -
+
+    Create a pillar (example in main.py)
+        If exists other pillars, inject one other pillar's info into database (example in main.py)
+
+    Launch pillar (example in main.py)
+        If another pillar is in the database, it will contact and sync. Once sync is 
+        complete, it can serve requests.
+
+        If no other pillar is in the database, then it starts serving requests.
+
+    Create a node (example in main.py)
+        Manually add a single pillar (example in main.py)
+            - Once connected all pillars and nodes will sync with node
+
+        

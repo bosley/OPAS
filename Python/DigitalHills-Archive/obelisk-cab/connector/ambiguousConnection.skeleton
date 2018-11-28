@@ -1,0 +1,26 @@
+from .channel import channel
+
+class _NEW_connection:
+
+    def __init__(self, connection_info):
+        self.channel = channel()
+        self.connection_info = connection_info
+
+    def setup(self):
+        self.remote_address = self.connection_info[0]
+        self.port = self.connection_info[1]
+
+        # Any information specific to the connection type will be in self.connection_info[2]
+
+        # Return true when line is ready, return False if something bad happened
+        return True
+    '''
+        Triggered by connector to send data
+    '''
+    def output(self, data):
+
+        # Place response to output in self.channel.received queue
+        # The connector will use the channel as a means for receiving the message
+        # if it is in the 'ready' state
+        pass
+
