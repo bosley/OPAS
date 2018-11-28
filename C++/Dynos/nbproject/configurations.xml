@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="cmac" displayName="cmac" projectFiles="true">
+      <logicalFolder name="NetAdapter" displayName="NetAdapter" projectFiles="true">
+        <itemPath>cmac/NetAdapter/NetAdapter.h</itemPath>
+        <itemPath>cmac/NetAdapter/NetAdapter_Internal.h</itemPath>
+        <itemPath>cmac/NetAdapter/NetAdapter_Shared.cpp</itemPath>
+        <itemPath>cmac/NetAdapter/NetAdapter_Stub.cpp</itemPath>
+        <itemPath>cmac/NetAdapter/NetAdapter_Unix.cpp</itemPath>
+        <itemPath>cmac/NetAdapter/NetAdapter_Win32.cpp</itemPath>
+        <itemPath>cmac/NetAdapter/NetAdapter_WinRT.cpp</itemPath>
+      </logicalFolder>
+      <itemPath>cmac/cmac.cpp</itemPath>
+      <itemPath>cmac/cmac.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>blocker/Blocker.h</itemPath>
+      <itemPath>host/DydnoDB.h</itemPath>
+      <itemPath>net/RPCClient.h</itemPath>
+      <itemPath>net/RPCServer.h</itemPath>
+      <itemPath>core.h</itemPath>
+      <itemPath>net/dnetmsg.h</itemPath>
+      <itemPath>host/helpers.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>blocker/Blocker.cpp</itemPath>
+      <itemPath>host/DydnoDB.cpp</itemPath>
+      <itemPath>net/RPCClient.cpp</itemPath>
+      <itemPath>net/RPCServer.cpp</itemPath>
+      <itemPath>ckey/ckey.cpp</itemPath>
+      <itemPath>ckey/ckey.h</itemPath>
+      <itemPath>core.cpp</itemPath>
+      <itemPath>net/dnetmsg.cpp</itemPath>
+      <itemPath>host/helpers.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+    <itemPath>TODO.md</itemPath>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>cmac</Elem>
+    <Elem>cryptopp</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <incDir>
+            <pElem>/usr/local/include</pElem>
+            <pElem>/usr/local/include/boost</pElem>
+            <pElem>/usr/local/Cellar/berkeley-db/6.2.32/include</pElem>
+          </incDir>
+          <commandLine>-std=c++14</commandLine>
+        </ccTool>
+        <linkerTool>
+          <linkerAddLib>
+            <pElem>/usr/local/lib</pElem>
+          </linkerAddLib>
+          <linkerDynSerch>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+          </linkerDynSerch>
+          <linkerLibItems>
+            <linkerLibLibItem>boost_filesystem</linkerLibLibItem>
+            <linkerLibLibItem>boost_signals</linkerLibLibItem>
+            <linkerLibLibItem>boost_system</linkerLibLibItem>
+            <linkerLibLibItem>boost_thread-mt</linkerLibLibItem>
+            <linkerLibFileItem>/usr/local/lib/libboost_program_options.a</linkerLibFileItem>
+            <linkerLibLibItem>cryptopp</linkerLibLibItem>
+            <linkerLibLibItem>rpc</linkerLibLibItem>
+            <linkerLibLibItem>db-6.2</linkerLibLibItem>
+            <linkerLibLibItem>db_sql</linkerLibLibItem>
+            <linkerLibLibItem>db_stl</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="TODO.md" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="blocker/Blocker.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="blocker/Blocker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ckey/ckey.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ckey/ckey.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cmac/NetAdapter/NetAdapter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cmac/NetAdapter/NetAdapter_Internal.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="cmac/NetAdapter/NetAdapter_Shared.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cmac/NetAdapter/NetAdapter_Stub.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cmac/NetAdapter/NetAdapter_Unix.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cmac/NetAdapter/NetAdapter_Win32.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cmac/NetAdapter/NetAdapter_WinRT.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cmac/cmac.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cmac/cmac.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="core.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="core.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <folder path="TestFiles">
+        <linkerTool>
+          <linkerDynSerch>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+          </linkerDynSerch>
+        </linkerTool>
+      </folder>
+      <item path="host/DydnoDB.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="host/DydnoDB.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="host/helpers.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="host/helpers.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="net/RPCClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="net/RPCClient.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="net/RPCServer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="net/RPCServer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="net/dnetmsg.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="net/dnetmsg.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <linkerTool>
+          <linkerDynSerch>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+          </linkerDynSerch>
+        </linkerTool>
+      </compileType>
+      <item path="TODO.md" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="blocker/Blocker.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="blocker/Blocker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ckey/ckey.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ckey/ckey.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cmac/NetAdapter/NetAdapter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cmac/NetAdapter/NetAdapter_Internal.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="cmac/NetAdapter/NetAdapter_Shared.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cmac/NetAdapter/NetAdapter_Stub.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cmac/NetAdapter/NetAdapter_Unix.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cmac/NetAdapter/NetAdapter_Win32.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cmac/NetAdapter/NetAdapter_WinRT.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cmac/cmac.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cmac/cmac.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="core.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="core.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <folder path="TestFiles">
+        <linkerTool>
+          <linkerDynSerch>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+          </linkerDynSerch>
+        </linkerTool>
+      </folder>
+      <item path="host/DydnoDB.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="host/DydnoDB.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="host/helpers.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="host/helpers.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="net/RPCClient.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="net/RPCClient.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="net/RPCServer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="net/RPCServer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="net/dnetmsg.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="net/dnetmsg.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
