@@ -1,0 +1,19 @@
+{
+    "accepted": "G001",
+    "pending": "NYD",
+    "encryption_key": "OLCUUUMK8WDF0JWPSBW2IM3M5DAY2UT6",
+    "port": 4096,
+    "name": "panda",
+    "decryption_key": "X115PYUWRWN46J2UTLW14A1GUTL5N8L9",
+    "UID": "edfd2748520511e79a4e001c42e5946a",
+    "known_remote_host": "http://joshbosley.com",
+    "handshake_key": "O23WB5QUXKJ0JDS1J1XTTLZCRM3JLT96",
+    "network_transmission_timeout": 10,
+    "address": "10.211.55.8",
+    "verification_block": 1024,
+    "nest_address": "198.110.216.30",
+    "adapter": "enp0s5",
+    "location": "space",
+    "scan_pool": 64,
+    "error": "E001"
+}

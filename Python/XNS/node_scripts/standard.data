@@ -1,0 +1,7 @@
+# States that can be had by tech in this cluster
+sd.false.False
+sd.true.True
+sd.on.on
+sd.off.off
+
+print.sd

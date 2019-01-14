@@ -1,0 +1,74 @@
+
+XNS Path Example:
+
+    <node id>.<device>.<routine | slot>.<data stream>
+
+    Sometimes written as (uid.dev.sor.ds)
+
+
+Commands are to be seperated by a "." and no spaces. 
+
+
+Command Line : 
+
+    Enter a series of valid instructions, and then to execute, use ' commit. '
+
+
+Printing :
+
+    print.pool              =>  Core signal pool
+    print.tickets           =>  Core pending tickets
+    print.retinfo           =>  Information retrieved from another device 
+    print.self              =>  Device Settings
+    print.<node_name>       =>  Node ID
+    print.address           =>  Node Ip address
+    print.nodes             =>  Displays info dump on all known remote nodes
+    print.comptick          =>  How many requests completed
+    print.sd                =>  Print all data vars set
+    print.sp                =>  Print all path vars set
+
+
+Requests:
+
+    req.<node id>.<device>.<routine | slot>.<data stream>
+
+    Example :
+        (Routine) - Check if motion is happeneing (data stream is ignored in routines)
+        req.0001.motion_sensor.check_motion._UNSET_
+
+        (Slot)  - Get temperature in fahrenheit 
+        req.0001.temp_sensor.get_temp.F
+
+    While in CLI mode, status can be checked by printing retinfo or tickets
+
+    Note : Tickets can are uo
+
+
+Assignment of Variables:
+
+    
+    Example assignment:
+
+        'SP' variable should only be assigned to XNS paths (uid.dev.sor.ds)
+            - Set Path
+
+        sp.the_var.uid.dev.sor.ds      (ds optional)
+
+        'SD' variable can contain anything other than $ (Yes, '.' can be used, but '. .'+ will become '.' ) 
+            - Set Data
+
+        sd.the_var."This is some data"
+
+
+
+Loop
+
+    loop.<from>.<to>.<step>.<action>
+
+If statement (Caused by req reply parameters)
+
+if.sp.gt.sd.<sp action>
+if.sp.lt.sd.<sp action>
+if.sp.eq.sd.<sp action>
+if.sp.gte.sd.<sp action>
+if.sp.lte.sd.<sp action>

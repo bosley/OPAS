@@ -1,0 +1,12 @@
+name:motion_sensor
+routine:check_motion
+#
+name:temp_sensor
+routine:check_for_overheat
+slot:get_temp
+stream:F,C,K
+#
+name:light_switch
+slot:turn_on
+slot:turn_off
+slot:toggle

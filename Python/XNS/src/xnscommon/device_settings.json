@@ -1,0 +1,30 @@
+[
+    {
+        "slots": [],
+        "routines": [
+            "check_motion"
+        ],
+        "id": "motion_sensor",
+        "stream": "_UNSET_"
+    },
+    {
+        "slots": [
+            "get_temp"
+        ],
+        "routines": [
+            "check_for_overheat"
+        ],
+        "id": "temp_sensor",
+        "stream": "F,C,K"
+    },
+    {
+        "slots": [
+            "turn_on",
+            "turn_off",
+            "toggle"
+        ],
+        "routines": [],
+        "id": "light_switch",
+        "stream": "_UNSET_"
+    }
+]

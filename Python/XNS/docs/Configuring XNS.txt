@@ -1,0 +1,39 @@
+
+Running XNS:
+
+    0. Determine which network adapter you're using
+    1. Run ./configure source config
+    2. Ensure each node in network has a unique id in their repsective xnscommon/node_settings.json
+
+Removing device files in xnsexternal (This removes ALL devices in xnsexternal):
+
+    0. Run ./configure clean devices     
+
+Adding device interaction:
+
+    0. Go to xnsexternal/skel and create a skeleton file
+
+    Example : 
+                name:motion_sensor
+                routine:check_motion
+                #
+                name:temp_sensor
+                routine:check_for_overheat
+                slot:get_temp
+                stream:F,C,K
+                #
+                name:light_switch
+                slot:turn_on
+                slot:turn_off
+                slot:toggle
+
+    2. run ./configure gen devices
+
+    All devices in skeleton file will be created. All previously existing
+    files will be ignored, and device_settings.json overwritten.
+    That said, this should not be done except for when laying the groundwork
+    for a new setup as settings file may be inaccurate for skipped files!
+
+Merging device files in xnsexternal into XNS :
+
+    0. Run ./configure source devices 
