@@ -1,0 +1,21 @@
+[package]
+name = "jewel"
+version = "0.1.0"
+authors = ["joshbosley <bosley117@gmail.com>"]
+edition = "2018"
+
+[lib]
+name = "libjewel"
+path = "src/jewel/lib.rs"
+
+[[bin]]
+name = "jewel"
+path = "src/main.rs"
+
+[dependencies]
+chrono = { version = "0.4", features = ["serde"] }
+clap = "~2.33.0"
+hex = "0.4.0"
+termion = { version = "1.5"}
+nexus = { git = "https://github.com/darkcarbon/nexus", branch = "dc-dev" }
+tui = { git = "https://github.com/darkcarbon/tui-rs", branch = "master" }

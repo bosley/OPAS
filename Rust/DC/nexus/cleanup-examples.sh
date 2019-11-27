@@ -1,0 +1,1 @@
+find . -name '.example_*' -exec rm -rf {} \;
