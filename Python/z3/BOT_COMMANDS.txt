@@ -1,0 +1,39 @@
+Bot Commands
+
+
+Issuing remote commands: 
+
+Use ^c to kill session
+
+---------------------------------------------------------------
+
+Use ': ' to denote a command to the remote system
+
+Example:
+
+    : ls -la
+
+    : cd /var/log
+
+    -- Change back to bot's working dir
+    : cd BWD 
+
+    : cat /var/log/file.log
+
+---------------------------------------------------------------
+
+Use '> ' to run a remote script
+
+Remote scripts are in /BWD/Tools
+
+Example:
+
+    > forkbomb.py
+
+    > ddos.py 127.0.0.1 9001
+
+---------------------------------------------------------------
+
+Use '?' to pull system information
+
+Use 'tools' to get list of available tools
