@@ -1,0 +1,17 @@
+def func1
+
+
+	put "Hey, I'm func1!\n"
+
+	ret
+
+
+def main
+
+	put "Calling func1\n"
+
+	do func1
+
+	put "Function has returned\n"
+
+	ret

@@ -1,0 +1,19 @@
+
+-- dir "/Users/bosley/projects/coal/docs/coal_code/";
+
+-- This would be ignored as the item has already been brought in
+-- import "import.coal";
+
+
+-- Since dir was already specified by the import.coal file, we don't need to do it again
+import "loops.coal";
+
+unit imported {
+
+    static module other {
+
+        def init()  -> none {
+
+        }
+    }
+}

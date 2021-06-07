@@ -1,0 +1,19 @@
+
+
+unit loops {
+
+    static module main {
+
+        def init() -> none {
+            
+            for (x : int = 4; x != 0 ; i = i - 1;) 
+            {
+
+            } 
+
+            while(1) {
+
+            }
+        }
+    }
+}

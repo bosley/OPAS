@@ -1,0 +1,47 @@
+unit conditionals {
+
+    static module main {
+
+        members {
+            pi: float = 3.14159;
+        }
+        
+        def init() -> none {
+        
+            -- Conditionals (if/elif/else) are expressions in coal, 
+            -- this means that if they must be followed by a  ';'
+            -- Conditionals are also not allowed to be empty. If you
+            -- give a conditional, then there must exist at least 1 statement
+            -- within the conditional
+        
+            if 1 > 0 { 
+                some_int : int = 3;
+            } elif 1 == 1 {
+                some_int : int = 3;
+            } else {
+                some_int : int = 3;
+            };
+        }
+
+        def as_expression() -> none {
+
+            -- Since conditionals are expressions, we can use them to assign values
+            -- such as the following :
+
+            some_value : int = if 1 > 0 {
+
+                -- Using the left arrow operator we are indicating that we want to 
+                -- force 4 to be the result of the expression.
+                <- 4;
+
+                -- The left arrow operator does not terminate the body of the conditional though
+                -- so if there exists another left arrow operation, it will take precedence
+                <- 99;
+            } else {
+                
+                <- 0;
+            };
+
+        }
+    }
+}

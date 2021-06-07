@@ -1,0 +1,633 @@
+use std::str::FromStr;
+use rug;
+
+use crate::lexer;
+use crate::token;
+
+use crate::ast;
+
+grammar<'input>;
+
+// Entry point for lalrpop
+pub Program: ast::File = {
+
+    <d:Dirs+> <i:Imports+> <u:Units+> => {
+        ast::File {
+            imports: i,
+            units:   u,
+            dirs:    d
+        }
+    },
+
+    <i:Imports+> <u:Units+> => {
+        ast::File {
+            imports: i,
+            units:   u,
+            dirs:    Vec::new()
+        }
+    },
+
+    <u:Units+> => {
+        ast::File {
+            imports: Vec::new(),
+            units:   u,
+            dirs:    Vec::new()
+        }
+    }
+}
+
+Dirs: String = {
+
+    "dir" <s:String> ";" => s
+}
+
+Imports: ast::Import = {
+
+    "import" <n:String> <pos:";"> => {
+        ast::Import {
+            file_name: n,
+            loc: ast::Location{
+                start: pos,
+                end: pos
+            }
+        }
+    }
+}
+
+Units: ast::Unit = {
+
+    "unit" <n:Name> "{" <m:Modules+> "}" => { ast::Unit {
+        name: n,
+        modules: m,
+        file: String::new()
+    }}
+}
+
+Modules: ast::Module = {
+
+    "module" <n:Name> <start:"{"> <m:ModuleBlocks> <end:"}"> => { ast::Module {
+        name: n,
+        is_static: false,
+        is_pub: false,
+        blocks: m,
+        loc: ast::Location {
+            start: start,
+            end:   end
+        }
+    }},
+
+    "static" "module" <n:Name> <start:"{"> <m:ModuleBlocks> <end:"}"> => { ast::Module {
+        name: n,
+        is_static: true,
+        is_pub: false,
+        blocks: m,
+        loc: ast::Location {
+            start: start,
+            end:   end
+        }
+    }},
+}
+
+// The individual blocks that can occur in the module. 
+ModuleBlocks: Vec<ast::Blocks> = {
+
+    // Only methods
+    <d:MethodDefinition+> => { 
+        let mut v : Vec<ast::Blocks> = Vec::new();
+        v.push(ast::Blocks::MethodBlock(d));
+        v
+    },
+
+    // Only members
+    <m:MemberDefinition> => { 
+        let mut v : Vec<ast::Blocks> = Vec::new();
+        v.push(ast::Blocks::MemberBlock(m));
+        v
+    },
+
+    // Members and methods
+    <m:MemberDefinition> <d:MethodDefinition+> => { 
+        let mut v : Vec<ast::Blocks> = Vec::new();
+        v.push(ast::Blocks::MemberBlock(m));
+        v.push(ast::Blocks::MethodBlock(d));
+        v
+    },
+
+    // Externs and methods
+    <e:ExternDefinition> <d:MethodDefinition+> => { 
+        let mut v : Vec<ast::Blocks> = Vec::new();
+        v.push(ast::Blocks::ExternBlock(e));
+        v.push(ast::Blocks::MethodBlock(d));
+        v
+    },
+
+    // Externs members and methods
+    <m:MemberDefinition> <e:ExternDefinition> <d:MethodDefinition+> => { 
+        let mut v : Vec<ast::Blocks> = Vec::new();
+        v.push(ast::Blocks::MemberBlock(m));
+        v.push(ast::Blocks::ExternBlock(e));
+        v.push(ast::Blocks::MethodBlock(d));
+        v
+    },
+
+    // Externs members and methods
+    <e:ExternDefinition> <m:MemberDefinition> <d:MethodDefinition+> => { 
+        let mut v : Vec<ast::Blocks> = Vec::new();
+        v.push(ast::Blocks::MemberBlock(m));
+        v.push(ast::Blocks::ExternBlock(e));
+        v.push(ast::Blocks::MethodBlock(d));
+        v
+    },
+
+} 
+
+MemberDefinition: ast::Members = {
+
+    "members" <start:"{"> <end:"}"> => ast::Members{ 
+        members: Vec::new(), 
+        loc: ast::Location{
+            start: start,
+            end: end
+        }},
+    "members" <start:"{"> <a:VariableAssignment+> <end:"}"> => {
+        for item in a.iter() {
+            match item.0 {
+                ast::Variable::Accessed(_,_) => {
+                    panic!("Error: Can not instantiate dictionary values in 'members' block");
+                }
+                _ => {}
+            }
+        }
+        ast::Members{ members: a, 
+                           loc: ast::Location{
+                               start: start,
+                               end: end
+                           } }
+    }
+}
+
+ExternDefinition: ast::Extern = {
+
+    "extern" <start:"{"> <end:"}"> => ast::Extern{ 
+        externs: Vec::new(), 
+        loc: ast::Location{
+            start: start,
+            end: end
+        }  },
+    "extern" <start:"{"> <v:Multiples<",", Name>> <end:"}"> => ast::Extern{ 
+        externs: v, 
+        loc: ast::Location{
+            start: start,
+            end: end
+        }  }
+}
+
+MethodDefinition: ast::MethodDefinition = {
+
+    "def" <n:Name> "(" ")" "->" <t:VariableType> <start:"{"> <end:"}">  => { ast::MethodDefinition{
+        name:n,
+        return_type: t,
+        parameters: Vec::new(),
+        instructions: Vec::new(), 
+        loc: ast::Location{
+            start: start,
+            end: end
+        } 
+    } },
+
+    "def" <n:Name> "(" <p:Multiples<",",  MethodParams>> ")" "->" <t:VariableType> <start:"{"> <end:"}">  => { ast::MethodDefinition{
+        name:n,
+        return_type: t,
+        parameters: p,
+        instructions: Vec::new(), 
+        loc: ast::Location{
+            start: start,
+            end: end
+        } 
+    } },
+
+    "def" <n:Name> "(" <p:Multiples<",",  MethodParams>> ")" "->" <t:VariableType> <start:"{"> <s:Statements+> <end:"}"> => { 
+        ast::MethodDefinition{
+            name:n,
+            return_type: t,
+            parameters: p,
+            instructions: s, 
+            loc: ast::Location{
+                start: start,
+                end: end
+            } 
+        } 
+    },
+
+    "def" <n:Name> "(" ")" "->" <t:VariableType> <start:"{"> <s:Statements+> <end:"}"> => { ast::MethodDefinition{
+        name:n,
+        return_type: t,
+        parameters: Vec::new(),
+        instructions: s, 
+        loc: ast::Location{
+            start: start,
+            end: end
+        } 
+    } }
+}
+
+IfExpr: Vec<ast::ConditionalBlock> = {
+    "if" <c:Expr> "{" <s:Statements+> "}" <e:ElseIf> => { 
+        let mut v = Vec::new();
+        v.push(ast::ConditionalBlock{
+            expression: Some(*c),
+            body: s
+        });
+        v.append(&mut e.clone());
+        v
+    },
+    "if" <c:Expr> "{" <s:Statements+> "}" <e:Else>   => { 
+        let mut v = Vec::new();
+        v.push(ast::ConditionalBlock{
+            expression: Some(*c),
+            body: s
+        });
+        v.append(&mut e.clone());
+        v
+    },
+    "if" <c:Expr> "{" <s:Statements+> "}"            => { 
+        let mut v = Vec::new();
+        v.push(ast::ConditionalBlock{
+            expression: Some(*c),
+            body: s
+        });
+        v
+    },
+}
+
+ElseIf: Vec<ast::ConditionalBlock> = {
+    "elif" <c:Expr> "{" <s:Statements+> "}" <e:ElseIf> => {
+        let mut v = Vec::new();
+        v.push(ast::ConditionalBlock{
+            expression: Some(*c),
+            body: s
+        });
+        v.append(&mut e.clone());
+        v
+     },
+    "elif" <c:Expr> "{" <s:Statements+> "}" <e:Else>   => {
+        let mut v = Vec::new();
+        v.push(ast::ConditionalBlock{
+            expression: Some(*c),
+            body: s
+        });
+        v.append(&mut e.clone());
+        v
+     },
+    "elif" <c:Expr> "{" <s:Statements+> "}"            => {
+        let mut v = Vec::new();
+        v.push(ast::ConditionalBlock{
+            expression: Some(*c),
+            body: s
+        });
+        v
+     }
+}
+
+Else: Vec<ast::ConditionalBlock> = {
+    "else" "{" <s:Statements+> "}"            => {
+        let mut v = Vec::new();
+        v.push(ast::ConditionalBlock{
+            expression: None,
+            body: s
+        });
+        v
+     }
+}
+
+Statements: ast::Statements = {
+
+    AssignmentStatement   => <>,
+    ReAssignmentStatement => <>,
+    BareExpressionStatement => <>,
+    ReturnStatement => <>,
+    LAPushStatement => <>,
+    LoopStatements => <>
+}
+
+AssignmentStatement: ast::Statements = {
+
+    <v:VariableAssignment> => {
+        ast::Statements::Assignment(v.0, v.1, *v.2, v.3)
+    }
+}
+
+ReAssignmentStatement: ast::Statements = {
+
+    <v:Variable> <start:"="> <e:Expr> <end:";"> => {
+        ast::Statements::ReAssignment(v, *e, ast::Location{
+            start: start,
+            end: end
+        })
+    }
+}
+
+BareExpressionStatement: ast::Statements = {
+
+    <e:Expr> <pos:";"> => {
+        ast::Statements::BareExpression(*e, ast::Location{
+            start: pos,
+            end: pos
+        })
+    }
+}
+
+ReturnStatement: ast::Statements = {
+
+    "return" <pos:";"> => {
+        ast::Statements::Return(None, ast::Location{
+            start: pos,
+            end: pos
+        } )
+    },
+
+    "return" <e:Expr> <pos:";"> => {
+        ast::Statements::Return(Some(*e), ast::Location{
+            start: pos,
+            end: pos
+        })
+    }
+}
+
+LAPushStatement: ast::Statements = {
+
+    "<-" <e:Expr> <pos:";"> => {
+        ast::Statements::LeftArrowPush(*e, ast::Location{
+            start: pos,
+            end: pos
+        })
+    }
+}
+
+LoopStatements: ast::Statements = {
+
+    "for" "(" <init:AssignmentStatement> <comp:Expr> <pos:";"> <post:ReAssignmentStatement> ")" "{" <s:Statements+> "}" => {
+        ast::Statements::For(Box::new(init), *comp, Box::new(post), Box::new(s), ast::Location{
+            start: pos,
+            end: pos
+        })
+    },
+
+    <pos:"while"> <e:Expr> "{" <s:Statements+> "}" => {
+        ast::Statements::While(*e, Box::new(s), ast::Location{
+            start: pos,
+            end: pos
+        })
+    },
+
+    "for" "(" <init:AssignmentStatement> <comp:Expr> <pos:";">  <post:ReAssignmentStatement> ")" "{" "}" => {
+        ast::Statements::For(Box::new(init), *comp, Box::new(post), Box::new(Vec::new()), ast::Location{
+            start: pos,
+            end: pos
+        })
+    },
+
+    <pos:"while"> <e:Expr> "{" "}" => {
+        ast::Statements::While(*e, Box::new(Vec::new()), ast::Location{
+            start: pos,
+            end: pos
+        })
+    },
+}
+
+MemberMethod : ast::MemberMethodExpr = {
+
+    <n:Name> "(" ")" => {
+        ast::MemberMethodExpr {
+            method: n,
+            params: Vec::new()
+        }
+    },
+
+    <n:Name> "(" <e:Multiples<",", Expr>>  ")" => {
+        ast::MemberMethodExpr {
+            method: n,
+            params: e
+        }
+    }
+}
+
+MethodParams: ast::MethodParam = {
+
+    <v:Name> ":" <t:VariableType> => {
+        ast::MethodParam{
+            name: v,
+            data_type: t
+        }
+    }
+}
+
+VariableType: ast::Types = {
+
+    "int"    => ast::Types::Integer, 
+    "float"  => ast::Types::Float, 
+    "string" => ast::Types::String, 
+    "addr"   => ast::Types::Addr, 
+    "module" => ast::Types::Module, 
+    "dict"   => ast::Types::Dict,
+    "bool"   => ast::Types::Bool,
+    "none"   => ast::Types::None,
+    "list"   "<" <v:VariableType> ">" => ast::Types::List(Box::new(v)), 
+}
+
+VariableAssignment: (ast::Variable, ast::Types, Box<ast::Expr>, ast::Location) = {
+    <v:Variable> <start:":"> <t:VariableType> "=" <e:Expr> <end:";"> => { (
+        v, t, e, ast::Location{
+            start: start,
+            end: end
+        }
+    )}
+}
+
+Variable: ast::Variable = {
+    Name  => ast::Variable::Simple(<>),
+    <v:Name> <d:Accessor+> => ast::Variable::Accessed(v, d)
+}
+
+// Expression
+Expr: Box<ast::Expr> = {
+    Expr ExprOp Factor => Box::new(ast::Expr::Op(<>)),
+    IfExpr => Box::new(ast::Expr::IfExpression(<>)),
+    Factor,
+    "!" <f:Factor> => Box::new(ast::Expr::UnaryOp(f, ast::UnaryOpcode::Negate)),
+    "~" <f:Factor> => Box::new(ast::Expr::UnaryOp(f, ast::UnaryOpcode::BwNot)),
+    <e:Expr> <a:Access> <f:Factor> => Box::new(ast::Expr::UnaryAccess(e, a,f)),
+};
+
+Access: ast::Accessors = {
+    "."  => ast::Accessors::Dot,
+    "::" => ast::Accessors::Eyes
+}
+
+ExprOp: ast::Opcode = { // (3)
+    "+"  => ast::Opcode::Add,
+    "-"  => ast::Opcode::Sub,
+    "<=" => ast::Opcode::Lte,
+    ">=" => ast::Opcode::Gte,
+    ">"  => ast::Opcode::Gt,
+    "<"  => ast::Opcode::Lt,
+    "==" => ast::Opcode::Equal,
+    "!=" => ast::Opcode::Ne
+};
+
+Factor: Box<ast::Expr> = {
+    Factor FactorOp Term => Box::new(ast::Expr::Op(<>)),
+  //  Term Access MemberMethod => Box::new(ast::Expr::Access(<>)),
+    MemberMethod => Box::new(ast::Expr::Method(<>)),
+    Term,
+};
+
+FactorOp: ast::Opcode = {
+    "*"   => ast::Opcode::Mul,
+    "/"   => ast::Opcode::Div,
+    "**"  => ast::Opcode::Pow,
+    "%"   => ast::Opcode::Mod,
+    "<<"  => ast::Opcode::Lsh,
+    ">>"  => ast::Opcode::Rsh,
+    "^"   => ast::Opcode::BwXor,
+    "|"   => ast::Opcode::BwOr,
+    "&"   => ast::Opcode::BwAnd,
+    "||"  => ast::Opcode::Or,
+    "&&"  => ast::Opcode::And
+};
+
+Term: Box<ast::Expr> = {
+    Integer   => Box::new(ast::Expr::Integer(<>)),
+    Float     => Box::new(ast::Expr::Float(<>)),
+    Variable  => Box::new(ast::Expr::Variable(<>)),
+    DictTerm,
+    ListTerm,
+    String    => Box::new(ast::Expr::String(<>)),
+    "(" <Expr> ")",
+};
+
+Accessor: ast::AccessorType = {
+    "[" <k:DictKey> "]"  => ast::AccessorType::RawValue(k),
+    "[" <v:Name> "]"     => ast::AccessorType::Variable(v),
+    "[" <k:Integer> "]"  => ast::AccessorType::Offset(k),
+}
+
+DictTerm: Box<ast::Expr> = {
+    "{" "}" => Box::new(ast::Expr::Dict(Vec::new())),
+    "{" <v:Multiples<",", DictionaryEntry>> "}" => Box::new(ast::Expr::Dict(v))
+}
+
+DictionaryEntry: ast::DictEntry = {
+    <s:DictKey> ":" <e:Expr> => { ast::DictEntry{
+                                        key: s,
+                                        value: e
+                                    }}
+}
+
+ListTerm: Box<ast::Expr> = {
+    "[" "]" => Box::new(ast::Expr::List(Vec::new())),
+    "{" <v:Multiples<",", Expr>> "}" => Box::new(ast::Expr::List(v))
+}
+
+DictKey: String = {
+    "LitStringDatum" => String::from_str(<>.trim_matches('\'')).unwrap()
+}
+
+Name: String = {
+    "Identifier" => String::from_str(<>).unwrap()
+};
+
+
+String: String = {
+    "StringDatum" => String::from(<>.trim_matches('"'))
+}
+
+Integer: rug::Integer = {
+    "IntegerDatum"  => {
+        rug::Integer::from(<>)
+    }
+};
+
+Float: rug::Float = {
+    "FloatDatum"  => {
+        rug::Float::with_val(53, <>)
+    }
+}
+
+Multiples<V, T>: Vec<T> = {
+    <v:(<T> V)*> <e:T> => {
+        let mut v = v;
+        v.push(e);
+        v
+    },
+};
+
+extern {
+    type Location = usize;
+    type Error = lexer::LexicalError;
+
+    enum token::Tok <'input> {
+        "module" => token::Tok::Module,
+        "static" => token::Tok::Static,
+        "int"    => token::Tok::Integer,
+        "bool"   => token::Tok::Bool,
+        "float"  => token::Tok::Float,
+        "string" => token::Tok::String,
+        "addr"   => token::Tok::Addr,
+        "dict"   => token::Tok::Dict,
+        "list"   => token::Tok::List,
+        "extern" => token::Tok::Extern,
+        "members"=> token::Tok::Members,
+        "def"    => token::Tok::Def,
+        "none"   => token::Tok::None,
+        "return" => token::Tok::Return,
+        "import" => token::Tok::Import(<usize>),
+        "dir"    => token::Tok::Dir(<usize>),
+        "if"     => token::Tok::If(<usize>),
+        "elif"   => token::Tok::Elif(<usize>),
+        "else"   => token::Tok::Else,
+        "for"    => token::Tok::For,
+        "while"  => token::Tok::While(<usize>),
+        "unit"   => token::Tok::Unit,
+        "->"     => token::Tok::Arrow,
+        "{"      => token::Tok::LeftCurly(<usize>),
+        "}"      => token::Tok::RightCurly(<usize>),
+        "("      => token::Tok::LeftParen,
+        ")"      => token::Tok::RightParen,
+        "["      => token::Tok::LeftBracket(<usize>),
+        "]"      => token::Tok::RightBracket(<usize>),
+        ":"      => token::Tok::Colon(<usize>),
+        "."      => token::Tok::Dot,
+        ";"      => token::Tok::SemiColon(<usize>),
+        "*"      => token::Tok::Mul,
+        "/"      => token::Tok::Div,
+        "**"     => token::Tok::Pow,
+        "%"      => token::Tok::Mod,
+        "<<"     => token::Tok::Lsh,
+        ">>"     => token::Tok::Rsh,
+        "^"      => token::Tok::Xor,
+        "|"      => token::Tok::BwOr,
+        "&"      => token::Tok::BwAnd,
+        "||"     => token::Tok::Or,
+        "&&"     => token::Tok::And,
+        "+"      => token::Tok::Add,
+        "-"      => token::Tok::Sub,
+        "<="     => token::Tok::Lte,
+        ">="     => token::Tok::Gte,
+        ">"      => token::Tok::Gt,
+        "<"      => token::Tok::Lt,
+        "=="     => token::Tok::Comparison,
+        "::"     => token::Tok::Eyes,
+        "!"      => token::Tok::Negate,
+        "!="     => token::Tok::Ne,
+        "~"      => token::Tok::Tilde,
+        "="      => token::Tok::Equal(<usize>),
+        ","      => token::Tok::Comma,
+        "<-"     => token::Tok::LeftArrow,
+        "FloatDatum"     => token::Tok::FloatDatum(<f64>),
+        "IntegerDatum"   => token::Tok::IntegerDatum(<i64>),
+        "StringDatum"    => token::Tok::StringDatum(<&'input str>),
+        "Identifier"     => token::Tok::Identifier(<&'input str>),
+        "LitStringDatum" => token::Tok::StringLiteralDatum(<&'input str>)
+    }
+}

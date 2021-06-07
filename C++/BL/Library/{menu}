@@ -1,0 +1,51 @@
+#
+#	CALL TO INIT BEFORE DISPLAY
+#
+def _menu
+
+	# Dimensions of the menu
+	__menu_X = 20
+	__menu_Y = 20
+
+	# Label to display at top
+	__menu_label = "NOT_SET - USE __menu_label\n"
+
+	# Space above and below grid
+	__menu_upper_buffer = 100
+	__menu_lower_buffer = 5
+	
+	# Until further notice, this will be here
+	put "\nMenu Initiated!\n"
+
+
+
+	ret
+
+#
+#	BEGIN MENU INTERFACE
+#
+def _menu_display
+
+	# Print upper buffer
+	for ___x from 0 to __menu_upper_buffer
+		put "\n"
+	ef
+
+	# Print the grid
+	for ___x from 0 to __menu_X
+
+		for ___y from 0 to __menu_Y
+			put "#"
+		ef
+		
+		put "\n"
+
+	ef
+
+	# Print lower buffer
+	for ___x from 0 to __menu_lower_buffer
+		put "\n"
+	ef
+
+	ret
+

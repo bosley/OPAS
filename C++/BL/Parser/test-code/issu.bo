@@ -1,0 +1,10 @@
+def main
+
+
+	x = "THIS SHOULD = BREAK "	
+
+	y = "THIS " + x + "But it doesn't now. . . \n"
+
+	put y
+
+	ret

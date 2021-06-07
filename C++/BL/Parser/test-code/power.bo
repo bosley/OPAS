@@ -1,0 +1,11 @@
+
+
+
+def main
+
+	x = 2 ^ 3
+
+	put " 2 ^ 3 is " + x + "\n"
+
+
+	ret

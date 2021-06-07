@@ -1,0 +1,61 @@
+language: cpp
+dist: xenial
+
+# More builds expected in the future
+matrix:
+  include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env:
+        - MATRIX_EVAL="CXX_COMPILER=g++-7"
+    
+before_install:
+  - eval "${MATRIX_EVAL}"
+  - PARENTDIR=$(pwd)
+
+  - mkdir $PARENTDIR/build
+
+  - OBAPPDIR="${PARENTDIR}/build"
+
+  - SUBMODJSON="${PARENTDIR}/external/json"
+  - SUBMODARG="${PARENTDIR}/external/argagg"
+  - SUBMODBUTANE="${PARENTDIR}/external/butane"
+
+  - wget https://github.com/cpputest/cpputest/releases/download/v3.8/cpputest-3.8.tar.gz -O /tmp/cpputest.tar.gz
+  - tar -xzvf /tmp/cpputest.tar.gz -C /tmp
+  - if [ "$CC" = "clang" ]; then export CXX="clang++"; fi && cd /tmp/cpputest-* && ./configure --prefix=/usr/local && make && sudo make install && cd -
+  - cd /tmp/cpputest-* && ./configure --prefix=/usr/local && make && sudo make install
+
+install:
+
+  - cd $PARENTDIR
+
+  - sudo apt-get install liblua5.3 -y
+
+  - git submodule update --init --remote --recursive
+
+  - cd $SUBMODJSON
+  - cmake -DJSON_BuildTests:BOOL=OFF ./
+  - make -j5
+  - sudo make install
+
+  - cd $SUBMODARG
+  - cmake ./
+  - make -j5
+  - sudo make install
+  
+  - cd $SUBMODBUTANE
+  - cmake ./
+  - make -j5
+  - sudo make install
+
+script:
+  - cd $OBAPPDIR
+  - cmake -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON $PARENTDIR/src
+  - sudo make -j5
+  

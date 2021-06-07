@@ -1,0 +1,14 @@
+
+dir "/Users/bosley/projects/coal/docs/coal_code/";
+
+import "imported.coal";
+
+unit main {
+
+    static module main {
+
+        def init() -> none {
+
+        }
+    }
+}

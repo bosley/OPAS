@@ -1,0 +1,1 @@
+./cli/obelusCli -a 127.0.0.1 -p 4096 -t lua -m "{\"lua\":\"some request\"}" -l 127.0.0.1 -n 4095

@@ -1,0 +1,299 @@
+use std::str::FromStr;
+use rug;
+use rug::Assign;
+
+use micron_ast::{
+    Expr, 
+    VariableType,
+    Opcode, 
+    UnaryOpcode, 
+    Statement, 
+    FLOAT_PRECISION, 
+    Accessors, 
+    MemberMethod, 
+    DictEntry,
+    DictAccessType,
+    ConditionalBlock
+};
+
+grammar;
+
+////  Means to allow comments from issue #509 
+//match {
+//    // Ignore C++-style comments
+//    r"//[^\n\r]*[\n\r]*" => { },
+//} else {
+//    // Other things you want to match
+//}
+//else {
+//    // Ignore whitespace
+//    // You probably want this to have low precedence
+//    r"\s*" => { },
+//    _ // Everything else
+//}
+
+// Entry point for lalrpop
+pub Program: Vec<Box<Statement>> = {
+
+    // Accept multiple statements
+    <s:Statements+> => s,
+
+}
+
+// All of the types of statements within the language
+Statements: Box<Statement> = {
+
+    <a:AssignmentStatement> => a,
+    <b:BareExpressionStatement> => b,
+    <c:YieldStatement> => c,
+    <s:ScopedStatements> => s,
+}
+
+ScopedStatements: Box<Statement> = {
+    "{" <s:Statements+> "}" => Box::new(Statement::ScopedStatementBlock(s))
+}
+
+// Assignment statement 
+AssignmentStatement: Box<Statement> = {
+
+    <v:VarTerm> "=" <e:Expr>   => Box::new(Statement::Assignment(v, e)),
+}
+
+// Bare Expression
+BareExpressionStatement: Box<Statement> = {
+
+    <e:Expr> => Box::new(Statement::BareExpression(e)),
+    <b:BuiltInFunction> => Box::new(Statement::BareExpression(b))
+}
+
+// Yield statement
+YieldStatement: Box<Statement> = {
+
+    "yield" <e:Expr> => Box::new(Statement::Yield(e)),
+}
+
+//    Variables:
+//    my_var
+//    my_var['key']['key1']...['keyN']
+//    my_var.some_method(...).some_other_method()...
+
+VarTerm: VariableType = {
+    Variable  => VariableType::Singular(<>),
+    <v:Variable> <d:DictAccessor+> => VariableType::Nested(v, d)
+}
+
+// Expression
+Expr: Box<Expr> = {
+    IfExpr => Box::new(Expr::IfExpression(<>)),
+    Expr ExprOp Factor => Box::new(Expr::Op(<>)),
+    Factor,
+    "!" <f:Factor> => Box::new(Expr::UnaryOp(f, UnaryOpcode::Negate)),
+    "~" <f:Factor> => Box::new(Expr::UnaryOp(f, UnaryOpcode::BwNot)),
+};
+
+Access: Accessors = {
+    "."  => Accessors::Dot
+}
+
+ExprOp: Opcode = { // (3)
+    "+"  => Opcode::Add,
+    "-"  => Opcode::Sub,
+    "<=" => Opcode::Lte,
+    ">=" => Opcode::Gte,
+    ">"  => Opcode::Gt,
+    "<"  => Opcode::Lt,
+    "==" => Opcode::Equal
+};
+
+Factor: Box<Expr> = {
+    Factor FactorOp Term => Box::new(Expr::Op(<>)),
+    Term Access Method => Box::new(Expr::Access(<>)),
+    Term,
+};
+
+FactorOp: Opcode = {
+    "*"   => Opcode::Mul,
+    "/"   => Opcode::Div,
+    "**"  => Opcode::Pow,
+    "%"   => Opcode::Mod,
+    "<<"  => Opcode::Lsh,
+    ">>"  => Opcode::Rsh,
+    "^"   => Opcode::BwXor,
+    "|"   => Opcode::BwOr,
+    "&"   => Opcode::BwAnd,
+    "||"  => Opcode::Or,
+    "&&"  => Opcode::And
+};
+
+Term: Box<Expr> = {
+    Integer   => Box::new(Expr::Number(<>)),
+    Float     => Box::new(Expr::Real(<>)),
+    VarTerm   => Box::new(Expr::Variable(<>)),
+    DictTerm,
+    String    => Box::new(Expr::String(<>)),
+    "(" <Expr> ")",
+};
+
+DictAccessor: DictAccessType = {
+    "[" <k:DictKey> "]"  => DictAccessType::RawValue(k),
+    "[" <v:Variable> "]" => DictAccessType::Variable(v)
+}
+
+DictTerm: Box<Expr> = {
+    "{" "}" => Box::new(Expr::Dict(Vec::new())),
+    "{" <v:Multiples<",", DictionaryEntry>> "}" => Box::new(Expr::Dict(v))
+}
+
+DictionaryEntry: Box<DictEntry> = {
+    <s:DictKey> ":" <e:Expr> => Box::new(DictEntry{
+                                        key: s,
+                                        value: e
+                                    })
+}
+
+MethodCall: Box<MemberMethod> = {
+
+    "." <m:Method> => m
+}
+
+Method: Box<MemberMethod> = {
+    <f:Function> "(" ")" => Box::new(MemberMethod{
+        method: f,
+        params: Vec::new()
+    }),
+    <f:Function> "(" <c:CallParams> ")" => Box::new(MemberMethod{
+        method: f,
+        params: c
+    })
+}
+
+CallParams: Vec<Box<Expr>> = {
+    <v:Multiples<",", Expr>> => <>
+}
+
+BuiltInFunction: Box<Expr> = {
+
+    "#" <f:Function> "(" <v:Variable> ")" => Box::new(Expr::BuiltInModifierCall(f, v))
+}
+
+
+IfExpr: Box<Vec<ConditionalBlock>> = {
+    "if" <c:Expr> "{" <s:Statements+> "}" <e:ElseIf> => { 
+        let mut v = Vec::new();
+        v.push(ConditionalBlock{
+            expression: Some(c),
+            body: s
+        });
+        v.append(&mut e.clone());
+        Box::new(v)
+    },
+    "if" <c:Expr> "{" <s:Statements+> "}" <e:Else>   => { 
+        let mut v = Vec::new();
+        v.push(ConditionalBlock{
+            expression: Some(c),
+            body: s
+        });
+        v.append(&mut e.clone());
+        Box::new(v)
+    },
+    "if" <c:Expr> "{" <s:Statements+> "}"            => { 
+        let mut v = Vec::new();
+        v.push(ConditionalBlock{
+            expression: Some(c),
+            body: s
+        });
+        Box::new(v)
+    },
+}
+
+ElseIf: Vec<ConditionalBlock> = {
+    "elif" <c:Expr> "{" <s:Statements+> "}" <e:ElseIf> => {
+        let mut v = Vec::new();
+        v.push(ConditionalBlock{
+            expression: Some(c),
+            body: s
+        });
+        v.append(&mut e.clone());
+        v
+     },
+    "elif" <c:Expr> "{" <s:Statements+> "}" <e:Else>   => {
+        let mut v = Vec::new();
+        v.push(ConditionalBlock{
+            expression: Some(c),
+            body: s
+        });
+        v.append(&mut e.clone());
+        v
+     },
+    "elif" <c:Expr> "{" <s:Statements+> "}"            => {
+        let mut v = Vec::new();
+        v.push(ConditionalBlock{
+            expression: Some(c),
+            body: s
+        });
+        v
+     }
+}
+
+Else: Vec<ConditionalBlock> = {
+    "else" "{" <s:Statements+> "}"            => {
+        let mut v = Vec::new();
+        v.push(ConditionalBlock{
+            expression: None,
+            body: s
+        });
+        v
+     }
+}
+
+ConditionBlock: Box<ConditionalBlock> = {
+    <e:Expr> "{" <s:Statements+> "}" => {
+        Box::new(ConditionalBlock{
+            expression: Some(e),
+            body: s
+        })
+    }
+}
+
+Integer: rug::Integer = {
+    r"(\-)?[0-9]+" => {
+
+        let mut value = rug::Integer::new();
+        value.assign(rug::Integer::parse(<>).unwrap());
+        value
+    }
+};
+
+Float: rug::Float = {
+    r"(\-)?[0-9]+\.[0-9]+" => {
+
+        let mut value = rug::Float::new(FLOAT_PRECISION);
+        value.assign(rug::Float::parse(<>).unwrap());
+        value
+    }
+}
+
+String: String = {
+    r#""([^"\\]|\\[0nrt"\\])*""# => String::from(<>.trim_matches('"'))
+}
+
+Function: String = {
+    r"[a-zA-Z_]+([0-9]+)?" => String::from_str(<>).unwrap()
+}
+
+Variable: String = {
+    r"[a-zA-Z_]+([0-9]+)?" => String::from_str(<>).unwrap()
+};
+
+DictKey: String = {
+    r"'[a-zA-Z_]+([0-9]+)?'"=> String::from_str(<>.trim_matches('\'')).unwrap()
+}
+
+// Get multiples of types sep by string 'V' 
+Multiples<V, T>: Vec<T> = {
+    <v:(<T> V)*> <e:T> => {
+        let mut v = v;
+        v.push(e);
+        v
+    },
+};

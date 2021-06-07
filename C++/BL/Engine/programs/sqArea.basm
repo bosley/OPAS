@@ -1,0 +1,12 @@
+<main
+
+	p "Length : "
+	r r0
+	p "Width : "
+	r r1
+	mult r0 r0 r1
+	p "Result : "
+	p r0
+	p "\n"
+
+>

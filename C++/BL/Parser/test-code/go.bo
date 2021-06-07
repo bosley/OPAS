@@ -1,0 +1,18 @@
+
+
+
+
+
+def main
+
+	put "About to trigger a go statement!" + "\n"
+
+	go @bottom
+
+	put "Shouldnt see this\n"
+
+@bottom
+
+	put "Bottom\n"
+
+	ret

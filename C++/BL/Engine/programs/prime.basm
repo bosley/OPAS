@@ -1,0 +1,108 @@
+////////////////////////////////////////////////////////
+//
+//	Josh A. Bosley
+//	BL implementation of primality test
+//	02-May-2016
+//
+
+
+// / / / / / / / / / / / / / / / / / / / / 
+//	MODULUS
+//	Performs modulus operation on r7, and r8
+//	Results in r0
+//	Ex:  r0 = r7 % r8
+//	Uses : r0, r7, r8, r9
+<_mod
+	mov r9 $0		// Init temp, and result
+	div r9 r7 r8		// Divide Num/Denom
+	beq r9 $0 @moduiz	// Check if mod is 0
+	jmp @moduinz		// If not, go to moduinz
+	@moduiz
+		mov r0 $0	// Indicate is 0
+		jmp @moddone
+	@moduinz
+		mult r9 r8 r9 	// Mult denom by result
+		sub r0 r7 r9	// Sub result from num
+		jmp @moddone
+
+	@moddone
+>
+
+// / / / / / / / / / / / / / / / / / / / / /
+// 	PRIMALITY TEST
+//	Performs primality test on r3, result
+//	is stored in r6. Calls _mod r3, r4, r6, r7,
+//	r8, r9, r10, r11, r12 used in operation
+<_isprime
+	mov r6 $1
+	ble r3 r6 @indicateNprime	// if n<= 1 not prime
+	ble r3 $3 @indicateIprime	// if <1, <=3 is prime
+					// if n mod 2, or n mod 3 not prime
+	mov r7 r3
+	mov r8 $2			// n mod 2
+	call _mod
+	beq r10 r0 @indicateNprime
+
+	mov r7 r3
+	mov r8 $3			// n mod 3
+	call _mod
+	beq r10 r0 @indicateNprime
+
+	mov r11 $5			// Let i = 5
+
+	mult r4 r11 r11			// Storage for i x i
+
+	bgt r4 r3 @indicateIprime	// Check initial i x i state
+
+	@optLoop			// If n mod i = 0, or n mod i+2 = 0
+		mov r7 r3
+		mov r8 r11		// n mod i
+		call _mod
+		beq r10 r0 @indicateNprime
+
+		mov r7 r3
+		add r12 r11 $2
+		mov r8 r12		// n mod i+2
+		call _mod
+		beq r10 r0 @indicateNprime
+		
+		add r11 r11 $6		// i += 6, test to loop through 
+		mult r4 r11 r11		// the process again 
+		ble r4 r3 @optLoop
+		jmp @indicateIprime
+	
+	mov r6 $2			// Indicate something wrong
+
+	@indicateNprime			// Indicate the item is not prime
+		mov r6 $0
+		jmp @bott
+	@indicateIprime			// Indicate the item is prime
+		mov r6 $1
+		jmp @bott
+	@bott				// All done
+>
+
+<main
+	p "Input number to test : "
+	r r3
+	p "\n"
+
+	p "The number : "
+	p r3
+
+	call _isprime
+	
+	beq r6 $0 @indicateNotPrime
+	beq r6 $1 @indicatePrime
+	jmp @unknown
+
+	@indicatePrime
+		p " is Prime\n"
+		jmp @done
+	@indicateNotPrime
+		p " is not Prime\n"
+		jmp @done
+	@unknown
+		p " is not known either way\n"
+	@done
+>

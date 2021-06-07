@@ -1,0 +1,32 @@
+unit expressions {
+
+static module other {
+
+    -- Remember: All static modules need an init, even if you don't 
+    -- 'want' it. Its what gets called on boot!
+    def init() -> none {}
+
+    def give_42() -> int {
+
+        return 42;
+    }
+}
+
+static module main {
+
+    members {
+        pi: float = 3.14159;
+    }
+    
+    def init() -> none {
+        local_var : int = 3 + 5 + 7.0 * (pi ** var);
+
+        local_var = self.give_something();
+    }
+
+    def give_something() -> int {
+
+        return 3 + other::give_42();
+    }
+}
+}

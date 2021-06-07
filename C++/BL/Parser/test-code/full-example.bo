@@ -1,0 +1,163 @@
+
+# To create global variables, create a function at the top of the program
+# and call the function at top of main to set var
+def _globals
+	
+	_globalVar1 = "This is a global variable"
+	_globalVar2 = "This is another global variable"
+
+	ret
+
+# A callable function
+def aFunc
+
+	put "aFunc has been called.\n"
+	put _globalVar2 + "\n"
+
+	ret
+
+# Program entry point
+def main
+
+	do _globals					# Call to initializ the globals	
+	put "Global Var : " + _globalVar1 + "\n"	# Display a global
+
+	# Integers
+
+	xInt = 200
+	yInt = 50
+	andZ = 2
+	myInt = 4 * (xInt + yInt / andZ) # ()*/+- Can be used with ints
+
+	put myInt + "\n"		# Put displays data. Converts to string and prints
+					# Can add strings ints and doubles
+	# Doubles
+	
+	myD  = 2.14
+	Xd = 3.14
+	Yd = myD + Xd + yInt		# ()*/+- Can be used with doubles
+					# Ints and doubles can be used together
+	put Yd + "\n"
+
+	# Print the int
+	put myInt + "\n"
+
+	# Strings
+	
+	myString  = "This is my string, "
+	myString1 = "and this is an int: "
+	myString2 = myString + myString1 + xInt + "\n"	# Strings can be added with ints and doubles
+	
+	put myString2
+
+	# If statements
+
+	a = 1
+	b = 5
+	c = 5
+	d = 10
+
+	# Less than
+	if a < b
+
+		put a + " is less than " + b + "\n"
+	fi
+
+	# Greater than
+	if b > a
+
+		put b + " is greater than " + a + "\n"
+	fi
+	
+	# Greater-than eq
+	if d >= c
+
+		put d + " is greater-than eq " + c + "\n"
+	fi
+
+	# Less-than eq
+	if a <= c
+		
+		put a + " is less-than eq " + c + "\n"
+	fi
+
+	# eq eq
+	if b == c
+		
+		put b + " is eq eq " + c + "\n"
+	fi
+
+	# not eq
+	if a != c
+		
+		put a + " not eq " + c + "\n"
+	fi
+
+	# THINGS THAT SHOULD NOT FIRE
+
+	if b != c
+		
+		put "Shouldnt see this \n"
+	fi
+
+	# not eq
+	if a == c
+		
+		put "Shouldnt see this \n"
+	fi
+
+	if d >= c
+
+		put "This should be seen\n"
+	fi
+
+	# For loops
+
+    	for x from 0 to 20 step 3			# Start, end and stepe may be ints, or vars
+							# The x in 'for x' will erase any pre-existing x
+        	put x + "\n"    			# If there is no pre-existing x, it creates it 
+    	ef
+
+    	for x from 5 to 15
+
+        	put x + "\n"    # 0..19
+    	ef
+
+    	a = 2
+    	b = 2
+    	for x from a to 10 step b
+
+        	put x + "\n"    # 0..19
+    	ef
+
+	# User input
+	
+	put "Please enter your name : "
+	uinput userName
+	put "\n" + "Hello, " + userName + "\n"
+
+	# Go statement
+
+	go @some_label
+
+	put "You will never see me\n"
+
+@some_label
+	
+	# Function call
+
+	do aFunc
+
+	# Write call
+
+	file1 = "output.test"
+	file2 = "output2.test"
+	data1 = "Something to write to file\n"
+	data2 = "Something appended to a file\n"
+
+	fout file1 write data1
+	fout file2 append data2
+	
+	ret
+
+

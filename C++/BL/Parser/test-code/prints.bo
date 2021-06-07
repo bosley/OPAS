@@ -1,0 +1,21 @@
+# 	Josh A. Bosley
+#	Example of print instructions
+#	No mixing string, and non-string items
+#	Can perform any mathematical construction prior
+
+def main
+
+	# STRINGS
+	X = " INSERT"
+	put "Hello" + X + " world\n"
+
+	# INTS
+	put 420 + 2 - 400
+	put "\n"
+	
+	# DOUBLES
+	c = 1.06
+	put 2.84 + 3.14 * c
+	put "\n"
+
+	ret

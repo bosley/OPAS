@@ -1,0 +1,32 @@
+
+unit simple {
+    static module main {
+
+        extern {
+            some_func
+        }
+        
+        --
+        -- Are my comments doing a work?
+        --
+
+        members {
+            counter: int   = 0;
+            moot:    float = 99.0;
+            data:    dict  = {
+                'key_1': 3,
+                'key_2': "A string"
+            };
+            my_list: list<int> = [];
+        }
+
+        def init() -> none {
+            
+        }
+
+        def some_func() -> none{
+
+        }
+    }
+}
+

@@ -1,0 +1,16 @@
+
+
+def main
+
+	a = "output.test"
+	b = "output1.test"
+
+	x = "Something to write to a file"
+	y = "Something else"
+
+
+	fout a append x
+
+	fout b write y
+
+	ret

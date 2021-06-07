@@ -1,0 +1,25 @@
+
+// Raises r0 to r1, result in r0
+// Uses r0 -> r3
+<power
+	mov r2 $1
+	mov r3 r0
+@top
+	mult r0 r0 r3
+	add r2 r2 $1
+	bne r1 r2 @top 
+
+>
+
+<main
+	p "Number : "
+	r r0
+
+	p "Exponent : "
+	r r1
+
+	call power
+
+	p r0
+	p "\n"
+>

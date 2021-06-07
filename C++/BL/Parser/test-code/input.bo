@@ -1,0 +1,11 @@
+
+
+def main
+
+
+	uinput x
+
+	put "You said : " + x + "\n"
+
+
+	ret

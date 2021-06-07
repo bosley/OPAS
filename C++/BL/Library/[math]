@@ -1,0 +1,51 @@
+
+// / / / / / / / / / / / / / [START MATH] / / / / / / / / / / / / /
+
+
+// / / / / / / / / / / / / / / / / / / / /
+//	BL Math Library
+//	Josh A. Bosley
+
+// / / / / / / / / / / / / / / / / / / / /
+//      POWER
+//      Performs power operation on r1, and r2
+//      Results in r0
+//      Ex:  r0 = r1 ^ r2
+//      Uses : r0, r1, r2, r3
+
+<__blib_power
+        mov r0 r1                       // Copy the power
+        mov r3 $1                       // Counter
+        bge r3 r2 @__blib_power_bottom  // Pre-Test
+        @__blib_power_top
+        mult r0 r0 r1			// Multiply the and sum
+        add r3 r3 $1
+        blt r3 r2 @__blib_power_top
+        @__blib_power_bottom
+>
+
+// / / / / / / / / / / / / / / / / / / / / 
+//	MODULUS
+//	Performs modulus operation on r1, and r2
+//	Results in r0
+//	Ex:  r0 = r1 % r2
+//	Uses : r0, r1, r2, r3
+
+<__blib_modulus
+	mov r3 $0		// Init temp, and result
+	div r3 r1 r2		// Divide Num/Denom
+	beq r3 $0 @moduiz	// Check if mod is 0
+	jmp @moduinz		// If not, go to moduinz
+	@moduiz
+		mov r0 $0	// Indicate is 0
+		jmp @moddone
+	@moduinz
+		mult r3 r2 r3 	// Mult denom by result
+		sub r0 r1 r3	// Sub result from num
+		jmp @moddone
+	@moddone
+>
+
+
+// / / / / / / / / / / / / / [END MATH] / / / / / / / / / / / / /
+

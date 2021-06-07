@@ -1,0 +1,31 @@
+// / / / / / / / / / / / / / / / / / / / /
+//      MODULUS
+//      Performs modulus operation on r7, and r8
+//      Results in r0
+//      Ex:  r0 = r7 % r8
+//      Uses : r0, r7, r8, r9
+<_mod
+	mov r9 $0
+     	div r9 r7 r8
+	beq r9 $0 @moduiz
+	jmp @moduinz
+	@moduiz
+		mov r0 $0
+		jmp @moddone 
+	@moduinz
+		mult r9 r8 r9
+		sub r0 r7 r9
+		jmp @moddone
+	@moddone
+>
+
+<main
+	p "Enter: n = "
+	r r7
+	p "Enter: i = "
+	r r8
+
+	call _mod
+	p r0
+	p "\n"
+>

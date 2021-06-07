@@ -1,0 +1,9 @@
+[submodule "external/butane"]
+	path = external/butane
+	url = https://github.com/joshbosley/butane
+[submodule "external/json"]
+	path = external/json
+	url = https://github.com/nlohmann/json
+[submodule "external/argagg"]
+	path = external/argagg
+	url = https://github.com/vietjtnguyen/argagg

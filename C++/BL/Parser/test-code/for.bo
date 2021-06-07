@@ -1,0 +1,33 @@
+
+
+def main
+
+
+
+
+	put "\n Testing for loop : \n"
+
+
+	for x from 0 to 20 step 3
+
+		put x + "\n"	# 0..19
+	ef
+		
+
+
+	x = 5
+	for x from 5 to 15
+
+		put x + "\n"	# 0..19
+	ef
+
+	a = 2
+	b = 2
+	for x from a to 10 step b 
+
+		put x + "\n"	# 0..19
+	ef
+
+
+
+	ret

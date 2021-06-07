@@ -1,0 +1,17 @@
+[package]
+name = "coal"
+version = "0.1.0"
+authors = ["bosley <bosley117@gmail.com>"]
+edition = "2018"
+
+[workspace]
+members = [".", "lang"] #, "engine"]
+
+[[bin]]
+name = "coal"
+path = "src/main.rs"
+
+[dependencies]
+clap = "2.33.3"
+coal_lang = { path = "./lang" }
+#coal_engine = { path = "./engine" }

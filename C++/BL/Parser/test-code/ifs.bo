@@ -1,0 +1,94 @@
+
+def main
+
+	# Test vars
+	a = 1
+	b = 5
+	c = 5
+	d = 10
+
+
+	# Less than
+	if a < b
+
+		put a + " is less than " + b + "\n"
+	fi
+
+	# Greater than
+	if b > a
+
+		put b + " is greater than " + a + "\n"
+	fi
+	
+	# Greater-than eq
+	if d >= c
+
+		put d + " is greater-than eq " + c + "\n"
+	fi
+
+	# Less-than eq
+	if a <= c
+		
+		put a + " is less-than eq " + c + "\n"
+	fi
+
+	# eq eq
+	if b == c
+		
+		put b + " is eq eq " + c + "\n"
+	fi
+
+	# not eq
+	if a != c
+		
+		put a + " not eq " + c + "\n"
+	fi
+
+
+	# THINGS THAT SHOULD NOT FIRE
+
+	if b != c
+		
+		put "Shouldnt see this \n"
+	fi
+
+	# not eq
+	if a == c
+		
+		put "Shouldnt see this \n"
+	fi
+
+	if d >= c
+
+		put "This should be seen\n"
+	fi
+
+
+
+	if "a" > "b"
+	
+		put "String - Shouldnt be seen\n"
+	fi
+
+	if "a" == "a"
+
+		put "String - Should see\n"
+	fi
+
+	if "a" != "b"
+
+		put "String - Should see\n"
+	fi
+
+
+	if "MOOT" < "TOOT"
+		put "moot is less than toot\n"
+	fi
+
+	if "MOOT" > "TOOT"
+		put "moot is greater than toot - Shouldnt see\n"
+	fi
+
+	ret	
+
+
